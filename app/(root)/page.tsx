@@ -1,13 +1,8 @@
 import { Metadata } from "next";
 import Script from "next/script";
 
-import { ClientPageWrapper } from "@/components/common/client-page-wrapper";
-import { HeroSection } from "@/components/common/hero-section";
-import { SpotlightSection } from "@/components/portfolio/spotlight-section";
-import { education } from "@/config/education";
-import { experiences } from "@/config/experience";
+import { HomePageContent } from "@/components/portfolio/home-page-content";
 import { pagesConfig } from "@/config/pages";
-import { Projects } from "@/config/projects";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -49,7 +44,7 @@ export default function IndexPage() {
   };
 
   return (
-    <ClientPageWrapper>
+    <>
       <Script
         id="schema-person"
         type="application/ld+json"
@@ -60,14 +55,7 @@ export default function IndexPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
       />
-
-      <HeroSection />
-
-      <SpotlightSection
-        projects={Projects}
-        experiences={experiences}
-        education={education}
-      />
-    </ClientPageWrapper>
+      <HomePageContent />
+    </>
   );
 }

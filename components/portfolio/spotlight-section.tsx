@@ -31,7 +31,7 @@ interface SpotlightSectionProps {
   education: EducationEntry[];
 }
 
-const transition = { duration: 0.25, ease: "easeOut" };
+const transition = { duration: 0.25, ease: "easeOut" as const };
 
 export function SpotlightSection({
   projects,
