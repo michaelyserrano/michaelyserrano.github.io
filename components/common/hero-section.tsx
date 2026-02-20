@@ -9,6 +9,7 @@ import { AnimatedText } from "@/components/common/animated-text";
 import { Icons } from "@/components/common/icons";
 import {
   CommandDialog,
+  CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
@@ -18,6 +19,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/h
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import { useToast } from "@/components/ui/use-toast";
 import profileImg from "@/public/profile-img.png";
 
 const ROTATING_PLACEHOLDERS = [
@@ -30,6 +32,7 @@ const PLACEHOLDER_INTERVAL_MS = 3000;
 
 export function HeroSection() {
   const { setTheme, resolvedTheme } = useTheme();
+  const { toast } = useToast();
   const [commandOpen, setCommandOpen] = React.useState(false);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [placeholderFade, setPlaceholderFade] = useState(true);
@@ -103,9 +106,9 @@ export function HeroSection() {
                   </div>
                 </HoverCardContent>
               </HoverCard>{" "}
-              MEng specializing in
+              MEng, Full Stack
               <br />
-              agentic tools and full-stack AI development.
+              Developer, and ML Engineer.
             </div>
           </div>
         </div>
@@ -136,36 +139,44 @@ export function HeroSection() {
         </div>
 
         <CommandDialog open={commandOpen} onOpenChange={setCommandOpen}>
-          <CommandInput placeholder="Type a command or search..." />
+          <CommandInput placeholder={ROTATING_PLACEHOLDERS[placeholderIndex]} />
           <CommandList className="max-h-[300px]">
-            <CommandGroup heading="Highlights">
+            <CommandEmpty>No results found for your search.</CommandEmpty>
+            <CommandGroup heading="Highlights & Navigation">
               <CommandItem
+                keywords={["job", "work", "internship", "experience", "career", "roblox"]}
                 onSelect={() => {
                   scrollToSection("experience");
                   setCommandOpen(false);
                 }}
               >
-                View Roblox Offer (Sept 2026)
+                <Icons.gitOrgBuilding className="mr-2 h-4 w-4" />
+                View Roblox Offer <span className="text-muted-foreground">(Sept 2026)</span>
               </CommandItem>
               <CommandItem
+                keywords={["school", "college", "degree", "education", "mit", "csail", "research", "savaal"]}
                 onSelect={() => {
                   scrollToSection("experience");
                   setCommandOpen(false);
                 }}
               >
-                Read about MIT CSAIL Savaal LLM
+                <Icons.laptop className="mr-2 h-4 w-4" />
+                Read about MIT CSAIL <span className="text-muted-foreground">Savaal LLM</span>
               </CommandItem>
               <CommandItem
+                keywords={["rindler", "startup", "founder", "projects", "portfolio", "code"]}
                 onSelect={() => {
                   scrollToSection("projects");
                   setCommandOpen(false);
                 }}
               >
+                <Icons.rocket className="mr-2 h-4 w-4" />
                 Explore Rindler Startup
               </CommandItem>
             </CommandGroup>
             <CommandGroup heading="Quick Actions">
               <CommandItem
+                keywords={["cv", "resume", "download", "pdf"]}
                 onSelect={() => {
                   window.open(siteConfig.resumePdfUrl ?? "/resume", "_blank");
                   setCommandOpen(false);
@@ -175,6 +186,7 @@ export function HeroSection() {
                 Download Resume
               </CommandItem>
               <CommandItem
+                keywords={["theme", "dark", "light", "mode", "toggle", "color"]}
                 onSelect={() => {
                   setTheme(resolvedTheme === "dark" ? "light" : "dark");
                   setCommandOpen(false);
@@ -185,12 +197,18 @@ export function HeroSection() {
                 Toggle Dark Mode
               </CommandItem>
               <CommandItem
-                onSelect={() => {
-                  navigator.clipboard.writeText(siteConfig.contactEmail);
+                keywords={["email", "contact", "message", "reach out"]}
+                onSelect={async () => {
                   setCommandOpen(false);
+                  try {
+                    await navigator.clipboard.writeText(siteConfig.contactEmail);
+                    toast({ title: "Email copied!" });
+                  } catch {
+                    // clipboard failed, no toast
+                  }
                 }}
               >
-                <Icons.contact className="mr-2 h-4 w-4" />
+                <Icons.mail className="mr-2 h-4 w-4" />
                 Copy Email Address
               </CommandItem>
             </CommandGroup>

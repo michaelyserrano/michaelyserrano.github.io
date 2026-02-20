@@ -11,6 +11,7 @@ import ContributionCard from "@/components/contributions/contribution-card";
 import { EducationCard } from "@/components/education/education-card";
 import ExperienceCard from "@/components/experience/experience-card";
 import { ProjectsSection } from "@/components/projects/projects-section";
+import { SkillsDialog } from "@/components/skills/skills-dialog";
 import SkillsCard from "@/components/skills/skills-card";
 import { Button } from "@/components/ui/button";
 import { featuredContributions } from "@/config/contributions";
@@ -120,13 +121,6 @@ export default function IndexPage() {
           >
             Education
           </AnimatedText>
-          <AnimatedText
-            as="p"
-            delay={0.2}
-            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
-          >
-            Advanced coursework and MEng track at MIT.
-          </AnimatedText>
         </div>
         <div className="mx-auto grid justify-center gap-4 md:w-full lg:grid-cols-1 max-w-2xl">
           {education.map((entry, index) => (
@@ -193,13 +187,6 @@ export default function IndexPage() {
           >
             {pagesConfig.contributions.title}
           </AnimatedText>
-          <AnimatedText
-            as="p"
-            delay={0.2}
-            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
-          >
-            {pagesConfig.contributions.description}
-          </AnimatedText>
         </div>
         <ContributionCard contributions={featuredContributions} />
       </AnimatedSection>
@@ -213,25 +200,12 @@ export default function IndexPage() {
             as="h2"
             className="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl"
           >
-            {pagesConfig.skills.title}
+            Skills
           </AnimatedText>
-          {pagesConfig.skills.description ? (
-            <AnimatedText
-              as="p"
-              delay={0.2}
-              className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
-            >
-              {pagesConfig.skills.description}
-            </AnimatedText>
-          ) : null}
         </div>
         <SkillsCard skills={featuredSkills} />
         <AnimatedText delay={0.4} className="flex justify-center">
-          <Link href="/skills" className="group">
-            <Button variant={"outline"} className="rounded-xl group-hover:[&>svg]:translate-x-1 [&>svg]:transition-transform">
-              <Icons.chevronDown className="mr-2 h-4 w-4" /> View All
-            </Button>
-          </Link>
+          <SkillsDialog />
         </AnimatedText>
       </AnimatedSection>
     </ClientPageWrapper>

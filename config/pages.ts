@@ -21,15 +21,6 @@ export const pagesConfig: PagesConfig = {
       description: "Michael Serrano's portfolio website.",
     },
   },
-  skills: {
-    title: "Skills",
-    description: "",
-    metadata: {
-      title: "Skills",
-      description:
-        "Michael Serrano's key skills that define his professional identity.",
-    },
-  },
   projects: {
     title: "Projects",
     description: "",
