@@ -2,45 +2,41 @@ import Link from "next/link";
 import * as React from "react";
 
 import { siteConfig } from "@/config/site";
-import { useLockBody } from "@/hooks/use-lock-body";
 import { cn } from "@/lib/utils";
 
 interface MobileNavProps {
-  items: any[];
+  items: { title: string; href: string; disabled?: boolean }[];
   children?: React.ReactNode;
 }
 
 export function MobileNav({ items, children }: MobileNavProps) {
-  useLockBody();
-
   return (
-    <div
-      className={cn(
-        "fixed inset-0 top-12 z-50 grid h-[calc(100vh-4rem)] grid-flow-row auto-rows-max overflow-auto p-6 pb-32 shadow-md animate-in slide-in-from-top-10 md:hidden"
-      )}
-    >
-      <div className="relative z-20 grid gap-6 rounded-md bg-popover p-4 text-popover-foreground shadow-md">
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="font-heading text-2xl">
-            {siteConfig.authorName}
-          </span>
-        </Link>
-        <nav className="grid grid-flow-row auto-rows-max text-sm">
-          {items.map((item, index) => (
-            <Link
-              key={index}
-              href={item.disabled ? "#" : item.href}
-              className={cn(
-                "flex w-full items-center rounded-md p-2 text-sm font-medium hover:underline",
-                item.disabled && "cursor-not-allowed opacity-60"
-              )}
-            >
-              {item.title}
-            </Link>
-          ))}
-        </nav>
-        {children ? <div className="pt-2">{children}</div> : null}
-      </div>
+    <div className="mx-auto w-full space-y-6">
+      <Link
+        href="/"
+        className="block font-heading text-xl font-semibold text-foreground"
+      >
+        {siteConfig.authorName}
+      </Link>
+      <nav className="flex flex-col gap-1 text-base">
+        {items.map((item) => (
+          <Link
+            key={item.href}
+            href={item.disabled ? "#" : item.href}
+            className={cn(
+              "rounded-lg py-2.5 px-3 font-medium text-foreground hover:bg-accent hover:text-accent-foreground",
+              item.disabled && "cursor-not-allowed opacity-60"
+            )}
+          >
+            {item.title}
+          </Link>
+        ))}
+      </nav>
+      {children ? (
+        <div className="flex flex-wrap items-center gap-3 border-t border-border/60 pt-4">
+          {children}
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -11,7 +11,9 @@ export default function PageHeader({ title, description }: PageHeaderProps) {
           <h1 className="inline-block font-heading text-4xl tracking-tight lg:text-5xl capitalize ">
             {title}
           </h1>
-          <p className="text-lg text-muted-foreground">{description}</p>
+          {description ? (
+            <p className="text-lg text-muted-foreground">{description}</p>
+          ) : null}
         </div>
       </div>
       <hr className="my-6" />

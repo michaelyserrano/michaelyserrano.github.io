@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatedSection } from "@/components/common/animated-section";
+import { Badge } from "@/components/ui/badge";
 import { EducationEntry } from "@/config/education";
 
 interface EducationCardProps {
@@ -20,17 +21,13 @@ export function EducationCard({ entry }: EducationCardProps) {
           <h4 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
             Degrees
           </h4>
-          <ul className="mt-2 space-y-1">
+          <div className="mt-2 flex flex-wrap gap-2">
             {entry.degrees.map((degree, idx) => (
-              <li
-                key={idx}
-                className="text-sm leading-relaxed flex items-start gap-2"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+              <Badge key={idx} variant="secondary" className="font-normal">
                 {degree}
-              </li>
+              </Badge>
             ))}
-          </ul>
+          </div>
         </div>
         {entry.researchFocus && (
           <div>
@@ -47,9 +44,13 @@ export function EducationCard({ entry }: EducationCardProps) {
             <h4 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
               Coursework Highlights
             </h4>
-            <p className="mt-2 text-sm text-foreground">
-              {entry.coursework.join(", ")}.
-            </p>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {entry.coursework.map((course, idx) => (
+                <Badge key={idx} variant="outline" className="font-normal">
+                  {course}
+                </Badge>
+              ))}
+            </div>
           </div>
         )}
       </div>

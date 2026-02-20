@@ -23,7 +23,7 @@ export const pagesConfig: PagesConfig = {
   },
   skills: {
     title: "Skills",
-    description: "Key skills that define my professional identity.",
+    description: "",
     metadata: {
       title: "Skills",
       description:
@@ -32,7 +32,7 @@ export const pagesConfig: PagesConfig = {
   },
   projects: {
     title: "Projects",
-    description: "Showcasing impactful projects and technical achievements.",
+    description: "",
     metadata: {
       title: "Projects",
       description: "Michael Serrano's projects in ML, full-stack, and research.",
@@ -58,7 +58,7 @@ export const pagesConfig: PagesConfig = {
   },
   experience: {
     title: "Professional & Research Experience",
-    description: "Transformative work in ML, agentic AI, and research.",
+    description: "",
     metadata: {
       title: "Professional & Research Experience",
       description:

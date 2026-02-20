@@ -16,7 +16,7 @@ export default function SkillsPage() {
       title={pagesConfig.skills.title}
       description={pagesConfig.skills.description}
     >
-      <SkillsCard skills={skills} />
+      <SkillsCard skills={skills} groupByCategory />
     </PageContainer>
   );
 }

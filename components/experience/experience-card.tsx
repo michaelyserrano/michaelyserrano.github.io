@@ -1,19 +1,26 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import * as React from "react";
 
 import { Icons } from "@/components/common/icons";
 import { Button } from "@/components/ui/button";
+import ChipContainer from "@/components/ui/chip-container";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { ExperienceInterface } from "@/config/experience";
+import { cn } from "@/lib/utils";
 
-// Helper function to extract year from date
 const getYearFromDate = (date: Date): string => {
   return new Date(date).getFullYear().toString();
 };
 
-// Helper function to get duration text
 const getDurationText = (
   startDate: Date,
   endDate: Date | "Present"
@@ -29,6 +36,8 @@ interface ExperienceCardProps {
 }
 
 const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
+  const [open, setOpen] = React.useState(false);
+
   return (
     <div className="group relative overflow-hidden rounded-lg border bg-background p-4 sm:p-6 transition-all duration-300">
       <div className="flex items-start gap-3 sm:gap-4">
@@ -92,17 +101,97 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
         </div>
       </div>
       <div className="mt-3 sm:mt-4 flex justify-end">
-        <Button
-          variant="outline"
-          size="sm"
-          className="rounded-lg w-full sm:w-auto"
-          asChild
-        >
-          <Link href={`/experience/${experience.id}`}>
-            View Details
-            <Icons.chevronRight className="ml-2 h-4 w-4" />
-          </Link>
-        </Button>
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger asChild>
+            <Button
+              variant="outline"
+              size="sm"
+              className="rounded-lg w-full sm:w-auto"
+            >
+              View Details
+              <Icons.chevronRight className="ml-2 h-4 w-4" />
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[800px] w-[90vw] max-h-[90vh] flex flex-col p-0">
+            <DialogHeader className="px-6 pt-6 pb-2">
+              <DialogTitle className="text-xl">
+                {experience.position} at {experience.company}
+              </DialogTitle>
+            </DialogHeader>
+            <ScrollArea className="flex-1 min-h-0 max-h-[70vh] px-6 pb-6">
+              <div className="pr-4 space-y-6">
+                <div className="flex flex-wrap items-center gap-2">
+                  {experience.logo && (
+                    <div className="w-14 h-14 rounded-lg border-2 border-border overflow-hidden bg-white flex-shrink-0">
+                      <Image
+                        src={experience.logo}
+                        alt={experience.company}
+                        width={56}
+                        height={56}
+                        className="w-full h-full object-contain p-2"
+                      />
+                    </div>
+                  )}
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary border border-primary/20">
+                    {getDurationText(experience.startDate, experience.endDate)}
+                  </span>
+                  {experience.companyUrl && (
+                    <a
+                      href={experience.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-1"
+                    >
+                      <Icons.externalLink className="w-4 h-4" /> Visit company
+                    </a>
+                  )}
+                </div>
+                <p className="text-muted-foreground">{experience.location}</p>
+
+                <div>
+                  <h3 className="font-semibold mb-3 text-sm uppercase tracking-wide text-muted-foreground">
+                    Role Summary
+                  </h3>
+                  <ul className="space-y-2">
+                    {experience.description.map((desc, idx) => (
+                      <li
+                        key={idx}
+                        className="text-sm leading-relaxed flex items-start gap-3"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        {desc}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold mb-3 text-sm uppercase tracking-wide text-muted-foreground">
+                    Key Achievements
+                  </h3>
+                  <ul className="space-y-2">
+                    {experience.achievements.map((achievement, idx) => (
+                      <li
+                        key={idx}
+                        className="text-sm leading-relaxed flex items-start gap-3"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        {achievement}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold mb-3 text-sm uppercase tracking-wide text-muted-foreground">
+                    Technologies & Skills
+                  </h3>
+                  <ChipContainer textArr={experience.skills} />
+                </div>
+              </div>
+            </ScrollArea>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

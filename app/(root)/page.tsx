@@ -1,27 +1,25 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 
 import { AnimatedSection } from "@/components/common/animated-section";
 import { AnimatedText } from "@/components/common/animated-text";
 import { ClientPageWrapper } from "@/components/common/client-page-wrapper";
+import { HeroSection } from "@/components/common/hero-section";
 import { Icons } from "@/components/common/icons";
 import ContributionCard from "@/components/contributions/contribution-card";
 import { EducationCard } from "@/components/education/education-card";
 import ExperienceCard from "@/components/experience/experience-card";
-import ProjectCard from "@/components/projects/project-card";
+import { ProjectsSection } from "@/components/projects/projects-section";
 import SkillsCard from "@/components/skills/skills-card";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { featuredContributions } from "@/config/contributions";
 import { education } from "@/config/education";
 import { experiences } from "@/config/experience";
 import { pagesConfig } from "@/config/pages";
-import { featuredProjects } from "@/config/projects";
+import { Projects } from "@/config/projects";
 import { siteConfig } from "@/config/site";
 import { featuredSkills } from "@/config/skills";
-import { cn } from "@/lib/utils";
-import profileImg from "@/public/profile-img.png";
 
 export const metadata: Metadata = {
   title: `${pagesConfig.home.metadata.title}`,
@@ -76,73 +74,7 @@ export default function IndexPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
       />
 
-      <section className="space-y-6 pb-8 pt-6 mb-0 md:pb-12 md:py-20 lg:py-32 min-h-screen flex items-center justify-center overflow-visible">
-        <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
-          <div className="relative mb-0 md:mb-2 w-[min(60vw,16rem)] aspect-square shrink-0 overflow-visible">
-            <Image
-              src={profileImg}
-              fill
-              sizes="(max-width: 768px) 60vw, 16rem"
-              className="rounded-full border-8 border-primary object-cover bg-primary"
-              alt="Michael Serrano - Machine Learning Engineer & Researcher Portfolio"
-              priority
-            />
-          </div>
-          <AnimatedText
-            as="h1"
-            delay={0.2}
-            className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl"
-          >
-            Michael Serrano
-          </AnimatedText>
-          <AnimatedText
-            as="h3"
-            delay={0.4}
-            className="font-heading text-base sm:text-xl md:text-xl lg:text-2xl"
-          >
-            Machine Learning Engineer & Researcher
-          </AnimatedText>
-          <div className="mt-4 max-w-[42rem] text-center">
-            <p className="leading-normal text-muted-foreground text-sm sm:text-base">
-              MIT MEng student in Computer Science, Economics, and Data Science,
-              specializing in scalable machine learning pipelines, agentic
-              tools, and full-stack AI development.
-            </p>
-          </div>
-
-          <div className="flex flex-col mt-10 items-center justify-center sm:flex-row sm:space-x-4 gap-3">
-            <AnimatedText delay={0.6}>
-              <Link
-                href={siteConfig.resumePdfUrl ?? "/resume"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(buttonVariants({ size: "lg" }))}
-                aria-label="View resume"
-              >
-                <Icons.post className="w-4 h-4 mr-2" /> Resume
-              </Link>
-            </AnimatedText>
-            <AnimatedText delay={0.8}>
-              <Link
-                href={`mailto:${siteConfig.contactEmail}`}
-                rel="noreferrer"
-                className={cn(
-                  buttonVariants({
-                    variant: "outline",
-                    size: "lg",
-                  })
-                )}
-                aria-label="Contact Michael Serrano"
-              >
-                <Icons.contact className="w-4 h-4 mr-2" /> Contact
-              </Link>
-            </AnimatedText>
-          </div>
-          <AnimatedText delay={1.2}>
-            <Icons.chevronDown className="h-6 w-6 mt-10" />
-          </AnimatedText>
-        </div>
-      </section>
+      <HeroSection />
       <AnimatedSection
         direction="up"
         className="container space-y-6 bg-muted py-10 my-14"
@@ -155,31 +87,22 @@ export default function IndexPage() {
           >
             {pagesConfig.projects.title}
           </AnimatedText>
-          <AnimatedText
-            as="p"
-            delay={0.2}
-            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
-          >
-            {pagesConfig.projects.description}
-          </AnimatedText>
+          {pagesConfig.projects.description ? (
+            <AnimatedText
+              as="p"
+              delay={0.2}
+              className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
+            >
+              {pagesConfig.projects.description}
+            </AnimatedText>
+          ) : null}
         </div>
         <div className="w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full items-stretch">
-            {featuredProjects.map((exp, index) => (
-              <AnimatedSection
-                key={exp.id}
-                delay={0.1 * (index + 1)}
-                direction="up"
-                className="h-full w-full min-w-0"
-              >
-                <ProjectCard project={exp} />
-              </AnimatedSection>
-            ))}
-          </div>
+          <ProjectsSection projects={Projects} />
         </div>
         <AnimatedText delay={0.4} className="flex justify-center">
-          <Link href="/projects">
-            <Button variant={"outline"} className="rounded-xl">
+          <Link href="/projects" className="group">
+            <Button variant={"outline"} className="rounded-xl group-hover:[&>svg]:translate-x-1 [&>svg]:transition-transform">
               <Icons.chevronDown className="mr-2 h-4 w-4" /> View All
             </Button>
           </Link>
@@ -229,13 +152,15 @@ export default function IndexPage() {
           >
             {pagesConfig.experience.title}
           </AnimatedText>
-          <AnimatedText
-            as="p"
-            delay={0.2}
-            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
-          >
-            {pagesConfig.experience.description}
-          </AnimatedText>
+          {pagesConfig.experience.description ? (
+            <AnimatedText
+              as="p"
+              delay={0.2}
+              className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
+            >
+              {pagesConfig.experience.description}
+            </AnimatedText>
+          ) : null}
         </div>
         <div className="mx-auto grid justify-center gap-4 md:w-full lg:grid-cols-3">
           {experiences.slice(0, 3).map((experience, index) => (
@@ -249,8 +174,8 @@ export default function IndexPage() {
           ))}
         </div>
         <AnimatedText delay={0.4} className="flex justify-center">
-          <Link href="/experience">
-            <Button variant={"outline"} className="rounded-xl">
+          <Link href="/experience" className="group">
+            <Button variant={"outline"} className="rounded-xl group-hover:[&>svg]:translate-x-1 [&>svg]:transition-transform">
               <Icons.chevronDown className="mr-2 h-4 w-4" /> View All
             </Button>
           </Link>
@@ -290,18 +215,20 @@ export default function IndexPage() {
           >
             {pagesConfig.skills.title}
           </AnimatedText>
-          <AnimatedText
-            as="p"
-            delay={0.2}
-            className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
-          >
-            {pagesConfig.skills.description}
-          </AnimatedText>
+          {pagesConfig.skills.description ? (
+            <AnimatedText
+              as="p"
+              delay={0.2}
+              className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7"
+            >
+              {pagesConfig.skills.description}
+            </AnimatedText>
+          ) : null}
         </div>
         <SkillsCard skills={featuredSkills} />
         <AnimatedText delay={0.4} className="flex justify-center">
-          <Link href="/skills">
-            <Button variant={"outline"} className="rounded-xl">
+          <Link href="/skills" className="group">
+            <Button variant={"outline"} className="rounded-xl group-hover:[&>svg]:translate-x-1 [&>svg]:transition-transform">
               <Icons.chevronDown className="mr-2 h-4 w-4" /> View All
             </Button>
           </Link>

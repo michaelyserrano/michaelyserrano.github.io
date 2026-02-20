@@ -1,154 +1,191 @@
 import { Icons } from "@/components/common/icons";
 
+export type SkillCategory =
+  | "Machine Learning & Data"
+  | "Frontend & Full-Stack"
+  | "Backend & Databases"
+  | "DevOps & Tools"
+  | "Languages";
+
 export interface skillsInterface {
   name: string;
   description: string;
-  rating: number;
   icon: any;
+  category: SkillCategory;
 }
 
 export const skillsUnsorted: skillsInterface[] = [
   {
     name: "Python",
-    description:
-      "Primary language for ML pipelines, research, and backend services.",
-    rating: 5,
+    description: "ML pipelines, research, backend services.",
     icon: Icons.python,
+    category: "Machine Learning & Data",
   },
   {
     name: "PyTorch",
-    description:
-      "Deep learning and graph neural networks for research and production models.",
-    rating: 5,
+    description: "Deep learning, graph neural networks.",
     icon: Icons.pytorch,
+    category: "Machine Learning & Data",
   },
   {
     name: "TensorFlow",
-    description:
-      "Building and deploying scalable machine learning models.",
-    rating: 5,
+    description: "Scalable ML models.",
     icon: Icons.tensorflow,
+    category: "Machine Learning & Data",
   },
   {
     name: "scikit-learn",
-    description:
-      "Classical ML, preprocessing, and model evaluation.",
-    rating: 5,
+    description: "Classical ML, preprocessing, evaluation.",
     icon: Icons.laptop,
+    category: "Machine Learning & Data",
   },
   {
     name: "Pandas",
-    description:
-      "Data manipulation, analysis, and feature engineering.",
-    rating: 5,
+    description: "Data manipulation and feature engineering.",
     icon: Icons.laptop,
+    category: "Machine Learning & Data",
   },
   {
     name: "NumPy",
-    description:
-      "Numerical computing and array operations for ML and research.",
-    rating: 5,
+    description: "Numerical computing for ML and research.",
     icon: Icons.laptop,
+    category: "Machine Learning & Data",
   },
   {
-    name: "Snorkel (Weak Supervision)",
-    description:
-      "Programmatic labeling and weak supervision for large-scale training data.",
-    rating: 4,
+    name: "LangChain",
+    description: "LLM applications and chains.",
     icon: Icons.laptop,
+    category: "Machine Learning & Data",
+  },
+  {
+    name: "Matplotlib",
+    description: "Data visualization and plotting.",
+    icon: Icons.laptop,
+    category: "Machine Learning & Data",
+  },
+  {
+    name: "Seaborn",
+    description: "Statistical data visualization.",
+    icon: Icons.laptop,
+    category: "Machine Learning & Data",
   },
   {
     name: "OpenCV",
-    description:
-      "Computer vision and image processing for ML pipelines.",
-    rating: 4,
+    description: "Computer vision and image processing.",
     icon: Icons.laptop,
+    category: "Machine Learning & Data",
   },
   {
     name: "TypeScript",
-    description:
-      "Type-safe frontend and full-stack development with React and Next.js.",
-    rating: 5,
+    description: "Type-safe frontend and full-stack.",
     icon: Icons.typescript,
+    category: "Frontend & Full-Stack",
   },
   {
     name: "React",
-    description:
-      "Building interactive UIs and full-stack web applications.",
-    rating: 5,
+    description: "Interactive UIs and web applications.",
     icon: Icons.react,
+    category: "Frontend & Full-Stack",
   },
   {
     name: "Next.js",
-    description:
-      "Full-stack React framework with SSR, routing, and API routes.",
-    rating: 5,
+    description: "Full-stack React, SSR, API routes.",
     icon: Icons.nextjs,
+    category: "Frontend & Full-Stack",
   },
   {
     name: "Node.js",
-    description:
-      "Server-side JavaScript for APIs and tooling.",
-    rating: 5,
+    description: "Server-side JavaScript, APIs, tooling.",
     icon: Icons.nodejs,
+    category: "Frontend & Full-Stack",
+  },
+  {
+    name: "Tailwind",
+    description: "Utility-first CSS framework.",
+    icon: Icons.tailwindcss,
+    category: "Frontend & Full-Stack",
   },
   {
     name: "FastAPI",
-    description:
-      "High-performance Python APIs for ML and web services.",
-    rating: 5,
+    description: "High-performance Python APIs.",
     icon: Icons.laptop,
+    category: "Backend & Databases",
   },
   {
     name: "SQL",
-    description:
-      "Database design, queries, and analytics for structured data.",
-    rating: 5,
+    description: "Database design, queries, analytics.",
     icon: Icons.mysql,
+    category: "Backend & Databases",
   },
   {
     name: "PostgreSQL",
-    description:
-      "Relational database for production applications and analytics.",
-    rating: 5,
+    description: "Relational DB for production.",
     icon: Icons.mysql,
+    category: "Backend & Databases",
+  },
+  {
+    name: "Redis",
+    description: "In-memory cache and data store.",
+    icon: Icons.laptop,
+    category: "Backend & Databases",
+  },
+  {
+    name: "Kafka",
+    description: "Event streaming and message broker.",
+    icon: Icons.laptop,
+    category: "Backend & Databases",
   },
   {
     name: "Docker",
-    description:
-      "Containerization and reproducible deployment of ML and web services.",
-    rating: 4,
+    description: "Containerization and deployment.",
     icon: Icons.docker,
+    category: "DevOps & Tools",
   },
   {
     name: "Git",
-    description:
-      "Version control, collaboration, and CI/CD workflows.",
-    rating: 5,
+    description: "Version control and CI/CD.",
     icon: Icons.github,
+    category: "DevOps & Tools",
+  },
+  {
+    name: "Cloudflare Workers",
+    description: "Edge serverless and workers.",
+    icon: Icons.laptop,
+    category: "DevOps & Tools",
   },
   {
     name: "English",
     description: "Native",
-    rating: 5,
     icon: Icons.user,
+    category: "Languages",
   },
   {
     name: "Spanish",
     description: "Fluent",
-    rating: 5,
     icon: Icons.user,
+    category: "Languages",
   },
   {
     name: "Chinese",
     description: "Beginner",
-    rating: 2,
     icon: Icons.user,
+    category: "Languages",
   },
 ];
 
-export const skills = skillsUnsorted
-  .slice()
-  .sort((a, b) => b.rating - a.rating);
+const categoryOrder: SkillCategory[] = [
+  "Machine Learning & Data",
+  "Frontend & Full-Stack",
+  "Backend & Databases",
+  "DevOps & Tools",
+  "Languages",
+];
+
+export const skills = skillsUnsorted;
+
+export const skillsByCategory = categoryOrder.map((category) => ({
+  category,
+  skills: skills.filter((s) => s.category === category),
+}));
 
 export const featuredSkills = skills.slice(0, 6);
