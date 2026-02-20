@@ -146,7 +146,7 @@ export function HeroSection() {
               <CommandItem
                 keywords={["job", "work", "internship", "experience", "career", "roblox"]}
                 onSelect={() => {
-                  scrollToSection("experience");
+                  scrollToSection("dashboard");
                   setCommandOpen(false);
                 }}
               >
@@ -156,7 +156,7 @@ export function HeroSection() {
               <CommandItem
                 keywords={["school", "college", "degree", "education", "mit", "csail", "research", "savaal"]}
                 onSelect={() => {
-                  scrollToSection("experience");
+                  scrollToSection("dashboard");
                   setCommandOpen(false);
                 }}
               >
@@ -166,7 +166,7 @@ export function HeroSection() {
               <CommandItem
                 keywords={["rindler", "startup", "founder", "projects", "portfolio", "code"]}
                 onSelect={() => {
-                  scrollToSection("projects");
+                  scrollToSection("dashboard");
                   setCommandOpen(false);
                 }}
               >
