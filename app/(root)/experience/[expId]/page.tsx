@@ -32,7 +32,10 @@ const getDurationText = (
   const startYear = getYearFromDate(startDate);
   const endYear =
     typeof endDate === "string" ? "Present" : getYearFromDate(endDate);
-  return `${startYear} - ${endYear}`;
+  if (endYear === "Present" || startYear !== endYear) {
+    return `${startYear} - ${endYear}`;
+  }
+  return startYear;
 };
 
 export async function generateMetadata({

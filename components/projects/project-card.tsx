@@ -57,16 +57,20 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button variant="default" className="mt-2 w-full sm:w-auto">
+            <Button
+              variant="outline"
+              size="sm"
+              className="rounded-lg mt-2 w-full sm:w-auto"
+            >
               Read more
-              <Icons.chevronRight className="w-4 ml-1" />
+              <Icons.chevronRight className="ml-2 h-4 w-4" />
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[800px] w-[90vw] max-h-[90vh] flex flex-col p-0">
-            <DialogHeader className="px-6 pt-6 pb-2">
+          <DialogContent className="sm:max-w-[800px] w-[90vw] max-h-[90vh] !flex flex-col overflow-hidden p-0">
+            <DialogHeader className="flex-shrink-0 px-6 pt-6 pb-2">
               <DialogTitle className="text-2xl">{project.companyName}</DialogTitle>
             </DialogHeader>
-            <ScrollArea className="flex-1 min-h-0 max-h-[70vh] px-6 pb-6">
+            <ScrollArea className="flex-1 min-h-0 overflow-y-auto px-6 pb-6">
               <div className="pr-4 space-y-6">
                 <div className="flex flex-wrap gap-2">
                   <ChipContainer textArr={project.category} />

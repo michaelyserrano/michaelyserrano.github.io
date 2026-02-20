@@ -19,7 +19,7 @@ export function MobileNav({ items, children }: MobileNavProps) {
         {siteConfig.authorName}
       </Link>
       <nav className="flex flex-col gap-1 text-base">
-        {items.map((item) => (
+        {items?.map((item) => (
           <Link
             key={item.href}
             href={item.disabled ? "#" : item.href}

@@ -79,14 +79,14 @@ export function MainNav({ items, children }: MainNavProps) {
         {showMobileMenu ? <Icons.close className="h-5 w-5" /> : <Icons.menu className="h-5 w-5" />}
         <span className="font-medium text-sm">Menu</span>
       </button>
-      {items?.length ? (
+      {(items?.length || children) ? (
         <Dialog open={showMobileMenu} onOpenChange={setShowMobileMenu}>
           <DialogContent
             className="max-h-[85dvh] overflow-y-auto w-[calc(100vw-2rem)] max-w-sm p-0 gap-0 rounded-xl md:hidden"
           >
             <DialogTitle className="sr-only">Navigation menu</DialogTitle>
             <div className="p-6 pt-10 pr-12">
-              <MobileNav items={items}>{children}</MobileNav>
+              <MobileNav items={items ?? []}>{children}</MobileNav>
             </div>
           </DialogContent>
         </Dialog>
