@@ -20,8 +20,8 @@ export const experiences: ExperienceInterface[] = [
     position: "Machine Learning Intern",
     company: "Roblox",
     location: "San Mateo, CA",
-    startDate: new Date("2025-08-01"),
-    endDate: "Present",
+    startDate: new Date("2025-05-01"),
+    endDate: new Date("2025-08-01"),
     description: [
       "Identified a critical training data bottleneck in the Account Safety team that forced the use of simple regression models and caused fragmented, untrustworthy metrics.",
       "Introduced and operationalized a Weak Supervision approach using Snorkel to programmatically generate massive datasets, effectively bypassing the manual labeling bottleneck.",

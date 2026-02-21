@@ -1,5 +1,5 @@
-import { CommandPalette } from "@/components/common/command-palette";
-import { FloatingDock } from "@/components/common/floating-dock";
+import { DockAndCommand } from "@/components/common/dock-and-command";
+import { SpotlightTabProvider } from "@/components/providers/spotlight-tab-provider";
 
 interface MarketingLayoutProps {
   children: React.ReactNode;
@@ -7,10 +7,11 @@ interface MarketingLayoutProps {
 
 export default function MarketingLayout({ children }: MarketingLayoutProps) {
   return (
-    <div className="flex min-h-screen flex-col">
-      <FloatingDock />
-      <CommandPalette />
-      <main className="flex-1">{children}</main>
-    </div>
+    <SpotlightTabProvider>
+      <div className="flex min-h-screen flex-col">
+        <DockAndCommand />
+        <main className="flex-1">{children}</main>
+      </div>
+    </SpotlightTabProvider>
   );
 }

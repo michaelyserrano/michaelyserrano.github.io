@@ -20,17 +20,15 @@ export function EducationCondensed({ entry, className }: EducationCondensedProps
       <h3 className="text-sm font-bold text-foreground">{entry.institution}</h3>
       <p className="text-xs text-muted-foreground mt-0.5">{entry.location}</p>
       <div className="mt-3 flex flex-wrap gap-1.5">
-        {entry.degrees.slice(0, 2).map((degree, idx) => (
-          <Badge key={idx} variant="secondary" className="text-xs font-normal">
-            {degree.length > 40 ? `${degree.slice(0, 40)}…` : degree}
-          </Badge>
-        ))}
+        {entry.degrees.slice(0, 3).map((degree, idx) => {
+          const label = `${degree.type} – ${degree.major}`;
+          return (
+            <Badge key={idx} variant="secondary" className="text-xs font-normal">
+              {label.length > 40 ? `${label.slice(0, 40)}…` : label}
+            </Badge>
+          );
+        })}
       </div>
-      {entry.researchFocus ? (
-        <p className="mt-2 text-xs text-muted-foreground line-clamp-2">
-          {entry.researchFocus}
-        </p>
-      ) : null}
     </div>
   );
 }

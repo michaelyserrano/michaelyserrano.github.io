@@ -65,27 +65,50 @@ export const Projects: ProjectInterface[] = [
     type: "Personal",
     category: ["Full Stack", "Backend", "Web Dev"],
     shortDescription:
-      "Private, patient-first platform for coherent medical reasoning over fragmented health records — desktop, local-first, encrypted by default with conversational RAG on local LLMs.",
-    techStack: ["Python", "Typescript", "React", "FastAPI", "PostgreSQL"],
+      "Lead Developer & Architect of a patient-first medical AI platform for reasoning over fragmented health records. Built as a secure, local-first desktop app with SMART on FHIR and multi-model LLM integrations.",
+    techStack: ["Rust", "Typescript", "React", "Tailwind CSS", "Tauri"],
     startDate: new Date("2024-01-01"),
-    endDate: new Date("2025-12-01"),
-    companyLogoImg: "/logo.png",
+    endDate: new Date("2025-12-01"), // Consider updating to "Present" if your type supports it, or extending the date
+    companyLogoImg: "/projects/charak/charak_demo_1.png",
     pagesInfoArr: [
       {
-        title: "Local-First & RAG",
+        title: "FHIR Integration & Consent",
         description:
-          "Desktop system with no cloud backend; medical data encrypted on device; conversational interface with retrieval-augmented reasoning on local LLMs.",
-        imgArr: ["/logo.png"],
+          "Engineered a SMART on FHIR integration using Rust to securely authenticate and fetch data from provider portals (like Epic/MyChart), ensuring patients have granular control over what information they share.",
+        imgArr: [
+          "/projects/charak/charak_demo_1.png", // Logging into MyChart
+          "/projects/charak/charak_demo_2.png", // Sharing information/Consent
+        ],
+      },
+      {
+        title: "Patient Dashboard",
+        description:
+          "Architected a local-first desktop system where all aggregated medical data is normalized into a time-series-friendly format, allowing patients to easily view their health records securely on-device.",
+        imgArr: [
+          "/projects/charak/charak_demo_3.png", // Seeing patient information
+        ],
+      },
+      {
+        title: "Conversational Local AI",
+        description:
+          "Developed a conversational RAG interface supporting a dynamic multi-model LLM architecture. By utilizing local models, patients can ask complex questions and receive tailored, hypothesis-driven advice without their data ever leaving their machine.",
+        imgArr: [
+          "/projects/charak/charak_demo_4.png", // Asking local models for advice
+        ],
       },
     ],
     descriptionDetails: {
       paragraphs: [
-        "Charak is a private, patient-first platform I developed to support coherent medical reasoning over fragmented health records. I architected a desktop system without a cloud backend, keeping medical data encrypted on the patient's device by default. I implemented a conversational interface utilizing retrieval-augmented reasoning on local language models to help patients identify trends across time and track competing medical hypotheses.",
+        "I am the Lead Developer and Architect of Charak, a private, patient-first platform designed to support coherent medical reasoning over fragmented health records. I am spearheading the product's overarching vision to help patients with complex conditions make sense of their medical history, track competing hypotheses, and prepare for clinical encounters without compromising their data privacy.",
+        "To achieve strict privacy constraints, I architected Charak as a local-first desktop application utilizing Tauri 2, React 19, and a Rust backend. I engineered a robust SMART on FHIR integration to securely retrieve records from major provider portals, alongside custom OCR and PDF extraction pipelines for unstructured medical documents.",
+        "For the core reasoning engine, I built a flexible, multi-model LLM integration. By default, the system utilizes local runtimes like Ollama and LM Studio for completely offline, encrypted data processing. For advanced reasoning tasks, I implemented a consent-gated mechanism to securely interface with cloud models like Gemini 2.5 Pro and OpenAI, ensuring patients maintain absolute control over their medical context."
       ],
       bullets: [
-        "Developed a private, patient-first platform designed to support coherent medical reasoning over fragmented health records.",
-        "Architected a desktop system without a cloud backend, keeping medical data encrypted on the patient's device by default.",
-        "Implemented a conversational interface utilizing retrieval-augmented reasoning on local language models to help patients identify trends across time and track competing medical hypotheses.",
+        "Spearhead the technical architecture and product vision for a patient-first AI platform designed to aggregate and synthesize fragmented medical records.",
+        "Built a cross-platform desktop application using Tauri 2, React 19, and Rust, ensuring all medical data remains securely encrypted on the user's local device.",
+        "Engineered a SMART on FHIR integration layer in Rust to handle OAuth2/PKCE flows, successfully extracting and normalizing structured data from provider sandboxes like Epic and Cerner.",
+        "Developed custom document ingestion pipelines utilizing PDF.js and Tesseract.js (OCR) to extract text and images from unstructured medical files for vision-model analysis.",
+        "Implemented a dynamic, multi-model LLM architecture supporting offline local reasoning via Ollama and LM Studio, alongside consent-gated cloud integrations for Gemini and OpenAI."
       ],
     },
   },

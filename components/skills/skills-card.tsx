@@ -1,8 +1,10 @@
+import { slugify } from "@/lib/spotlight-targets";
 import { skillsInterface } from "@/config/skills";
 
 interface SkillsCardProps {
   skills: skillsInterface[];
   groupByCategory?: boolean;
+  highlightCardId?: string | null;
 }
 
 const CATEGORY_ORDER = [
@@ -13,10 +15,19 @@ const CATEGORY_ORDER = [
   "Languages",
 ] as const;
 
-function SkillChip({ skill }: { skill: skillsInterface }) {
+function SkillChip({
+  skill,
+  id,
+}: {
+  skill: skillsInterface;
+  id?: string;
+}) {
   return (
-    <div className="flex items-center gap-2 rounded-md border bg-background px-2.5 py-1.5 text-sm transition-colors hover:bg-muted/50">
-      <skill.icon size={18} className="shrink-0 text-muted-foreground" />
+    <div
+      id={id}
+      className="flex items-center gap-2.5 rounded-lg border bg-background px-4 py-2.5 text-base transition-colors hover:bg-muted/50"
+    >
+      <skill.icon size={22} className="shrink-0 text-muted-foreground" />
       <span className="font-medium">{skill.name}</span>
     </div>
   );
@@ -25,6 +36,7 @@ function SkillChip({ skill }: { skill: skillsInterface }) {
 export default function SkillsCard({
   skills,
   groupByCategory = false,
+  highlightCardId,
 }: SkillsCardProps) {
   if (groupByCategory) {
     const categories = Array.from(
@@ -37,18 +49,22 @@ export default function SkillsCard({
     );
 
     return (
-      <div className="space-y-5">
+      <div className="space-y-6">
         {sortedCategories.map((category) => {
           const categorySkills = skills.filter((s) => s.category === category);
           if (categorySkills.length === 0) return null;
           return (
             <section key={category}>
-              <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
                 {category}
               </h3>
-              <div className="flex flex-wrap gap-2">
-                {categorySkills.map((skill, id) => (
-                  <SkillChip key={`${skill.name}-${id}`} skill={skill} />
+              <div className="flex flex-wrap gap-3">
+                {categorySkills.map((skill, idx) => (
+                  <SkillChip
+                    key={`${skill.name}-${idx}`}
+                    skill={skill}
+                    id={`spotlight-card-skills-${slugify(skill.name)}`}
+                  />
                 ))}
               </div>
             </section>
@@ -59,9 +75,13 @@ export default function SkillsCard({
   }
 
   return (
-    <div className="flex flex-wrap gap-2">
-      {skills.map((skill, id) => (
-        <SkillChip key={`${skill.name}-${id}`} skill={skill} />
+    <div className="flex flex-wrap gap-3">
+      {skills.map((skill, idx) => (
+        <SkillChip
+          key={`${skill.name}-${idx}`}
+          skill={skill}
+          id={`spotlight-card-skills-${slugify(skill.name)}`}
+        />
       ))}
     </div>
   );

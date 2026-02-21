@@ -58,9 +58,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button
-              variant="outline"
+              variant="default"
               size="sm"
-              className="rounded-lg mt-2 w-full sm:w-auto"
+              className="rounded-lg mt-2 w-full sm:w-auto font-semibold shadow-sm hover:shadow-md transition-shadow"
             >
               Read more
               <Icons.chevronRight className="ml-2 h-4 w-4" />

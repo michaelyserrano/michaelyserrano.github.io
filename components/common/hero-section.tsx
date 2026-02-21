@@ -7,19 +7,10 @@ import { useEffect, useState } from "react";
 
 import { AnimatedText } from "@/components/common/animated-text";
 import { Icons } from "@/components/common/icons";
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
-import { siteConfig } from "@/config/site";
+import { SocialLinks } from "@/config/socials";
 import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
-import { useToast } from "@/components/ui/use-toast";
+import { useSpotlightStore } from "@/store/spotlight-store";
 import profileImg from "@/public/profile-img.png";
 
 const ROTATING_PLACEHOLDERS = [
@@ -31,9 +22,7 @@ const ROTATING_PLACEHOLDERS = [
 const PLACEHOLDER_INTERVAL_MS = 3000;
 
 export function HeroSection() {
-  const { setTheme, resolvedTheme } = useTheme();
-  const { toast } = useToast();
-  const [commandOpen, setCommandOpen] = React.useState(false);
+  const setCommandPaletteOpen = useSpotlightStore((s) => s.setCommandPaletteOpen);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [placeholderFade, setPlaceholderFade] = useState(true);
 
@@ -53,20 +42,8 @@ export function HeroSection() {
     };
   }, []);
 
-  // Cmd+K / Ctrl+K to open command dialog
-  useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setCommandOpen((open) => !open);
-      }
-    };
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
-  }, []);
-
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const scrollToBottomBar = () => {
+    document.getElementById("page-footer")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -113,11 +90,11 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Spotlight search trigger – premium command-style, opens CommandDialog on click or ⌘K / Ctrl+K */}
-        <div className="w-full max-w-3xl mt-10 px-2 sm:px-4">
+        {/* Spotlight search trigger – opens the global command palette (layout); hidden on small screens so content flows up */}
+        <div className="hidden md:block w-full max-w-3xl mt-10 px-2 sm:px-4">
           <button
             type="button"
-            onClick={() => setCommandOpen(true)}
+            onClick={() => setCommandPaletteOpen(true)}
             className={cn(
               "flex h-16 w-full items-center gap-4 rounded-2xl border border-input bg-background px-6 shadow-md transition-colors sm:h-[4.25rem]",
               "hover:bg-accent/50 hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -138,85 +115,39 @@ export function HeroSection() {
           </button>
         </div>
 
-        <CommandDialog open={commandOpen} onOpenChange={setCommandOpen}>
-          <CommandInput placeholder={ROTATING_PLACEHOLDERS[placeholderIndex]} />
-          <CommandList className="max-h-[300px]">
-            <CommandEmpty>No results found for your search.</CommandEmpty>
-            <CommandGroup heading="Highlights & Navigation">
-              <CommandItem
-                keywords={["job", "work", "internship", "experience", "career", "roblox"]}
-                onSelect={() => {
-                  scrollToSection("spotlight");
-                  setCommandOpen(false);
-                }}
-              >
-                <Icons.gitOrgBuilding className="mr-2 h-4 w-4" />
-                View Roblox Offer <span className="text-muted-foreground">(Sept 2026)</span>
-              </CommandItem>
-              <CommandItem
-                keywords={["school", "college", "degree", "education", "mit", "csail", "research", "savaal"]}
-                onSelect={() => {
-                  scrollToSection("spotlight");
-                  setCommandOpen(false);
-                }}
-              >
-                <Icons.laptop className="mr-2 h-4 w-4" />
-                Read about MIT CSAIL <span className="text-muted-foreground">Savaal LLM</span>
-              </CommandItem>
-              <CommandItem
-                keywords={["rindler", "startup", "founder", "projects", "portfolio", "code"]}
-                onSelect={() => {
-                  scrollToSection("spotlight");
-                  setCommandOpen(false);
-                }}
-              >
-                <Icons.rocket className="mr-2 h-4 w-4" />
-                Explore Rindler Startup
-              </CommandItem>
-            </CommandGroup>
-            <CommandGroup heading="Quick Actions">
-              <CommandItem
-                keywords={["cv", "resume", "download", "pdf"]}
-                onSelect={() => {
-                  window.open(siteConfig.resumePdfUrl ?? "/resume", "_blank");
-                  setCommandOpen(false);
-                }}
-              >
-                <Icons.post className="mr-2 h-4 w-4" />
-                Download Resume
-              </CommandItem>
-              <CommandItem
-                keywords={["theme", "dark", "light", "mode", "toggle", "color"]}
-                onSelect={() => {
-                  setTheme(resolvedTheme === "dark" ? "light" : "dark");
-                  setCommandOpen(false);
-                }}
-              >
-                <Icons.moon className="mr-2 h-4 w-4 dark:hidden" />
-                <Icons.sun className="mr-2 h-4 w-4 hidden dark:block" />
-                Toggle Dark Mode
-              </CommandItem>
-              <CommandItem
-                keywords={["email", "contact", "message", "reach out"]}
-                onSelect={async () => {
-                  setCommandOpen(false);
-                  try {
-                    await navigator.clipboard.writeText(siteConfig.contactEmail);
-                    toast({ title: "Email copied!" });
-                  } catch {
-                    // clipboard failed, no toast
-                  }
-                }}
-              >
-                <Icons.mail className="mr-2 h-4 w-4" />
-                Copy Email Address
-              </CommandItem>
-            </CommandGroup>
-          </CommandList>
-        </CommandDialog>
+        {/* Social links – visible on landing so they aren’t covered by the bottom bar */}
+        <div className="flex items-center justify-center gap-4 mt-8">
+          {SocialLinks.map((item, ind) => (
+            <a
+              key={ind}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "inline-flex h-10 w-10 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground hover:bg-accent/50",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              )}
+              aria-label={item.name}
+              title={item.username}
+            >
+              <item.icon className="h-5 w-5" />
+            </a>
+          ))}
+        </div>
 
         <AnimatedText delay={1.2}>
-          <Icons.chevronDown className="h-6 w-6 mt-10" />
+          <button
+            type="button"
+            onClick={scrollToBottomBar}
+            className={cn(
+              "inline-flex items-center justify-center rounded-full h-14 w-14 text-muted-foreground transition-colors hover:text-foreground hover:bg-accent/50",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              "mt-6"
+            )}
+            aria-label="Scroll to bottom"
+          >
+            <Icons.chevronDown className="h-8 w-8" />
+          </button>
         </AnimatedText>
       </div>
     </section>

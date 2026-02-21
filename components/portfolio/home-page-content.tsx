@@ -1,19 +1,23 @@
 "use client";
 
-import { useGraphStore } from "@/store/graph-store";
-import { NodeGraphCanvas } from "@/components/portfolio/node-graph-canvas";
-import { RecruiterLayout } from "@/components/portfolio/recruiter-layout";
+import { ClientPageWrapper } from "@/components/common/client-page-wrapper";
+import { HeroSection } from "@/components/common/hero-section";
+import { SpotlightSection } from "@/components/portfolio/spotlight-section";
+import { SiteFooter } from "@/components/common/site-footer";
+import { education } from "@/config/education";
+import { experiences } from "@/config/experience";
+import { Projects } from "@/config/projects";
 
 export function HomePageContent() {
-  const isGraphMode = useGraphStore((s) => s.isGraphMode);
-
-  if (isGraphMode) {
-    return (
-      <div className="h-screen w-full">
-        <NodeGraphCanvas />
-      </div>
-    );
-  }
-
-  return <RecruiterLayout />;
+  return (
+    <ClientPageWrapper>
+      <HeroSection />
+      <SpotlightSection
+        projects={Projects}
+        experiences={experiences}
+        education={education}
+      />
+      <SiteFooter />
+    </ClientPageWrapper>
+  );
 }

@@ -93,9 +93,9 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button
-              variant="outline"
+              variant="default"
               size="sm"
-              className="rounded-lg w-full sm:w-auto mt-auto"
+              className="rounded-lg w-full sm:w-auto mt-auto font-semibold shadow-sm hover:shadow-md transition-shadow"
             >
               View Details
               <Icons.chevronRight className="ml-2 h-4 w-4" />

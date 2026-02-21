@@ -483,3 +483,8 @@
     stroke-dashoffset: 0;
   }
 }
+
+/* Command palette: temporary highlight when navigating to a specific card */
+.spotlight-card-highlight {
+  @apply ring-2 ring-primary ring-offset-2;
+}

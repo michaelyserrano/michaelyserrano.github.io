@@ -22,7 +22,7 @@ export function HomeDashboard() {
         <p className="text-sm font-medium text-muted-foreground truncate">
           <span className="text-foreground font-semibold">Michael Serrano</span>
           {" · "}
-          MIT 6-14 MEng · Incoming @ Roblox (Sept 2026)
+          MIT 6-14 MEng
         </p>
       </div>
 
@@ -49,9 +49,6 @@ export function HomeDashboard() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500" />
                   </span>
-                  <p className="text-xs font-medium">
-                    Incoming @ Roblox (Sept 2026)
-                  </p>
                 </div>
               </div>
 

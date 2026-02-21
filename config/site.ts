@@ -12,9 +12,10 @@ export const siteConfig = {
   resumePdfUrl:
     "https://drive.google.com/file/d/1YW4H2cLcjUHJ6rLCa4HOr_pls7H2qJ_i/view?usp=sharing",
   contactEmail: "michaelyserrano@gmail.com",
-  ogImage: "/opengraph-image.png",
-  iconIco: "/favicon.ico",
-  logoIcon: "/favicon.ico",
+  ogImage: "/logo.png",
+  /** Cache-bust (?v=2) so browsers fetch the updated favicon instead of serving the old one. */
+  iconIco: "/logo.png?v=2",
+  logoIcon: "/logo.png?v=2",
   keywords: [
     "Michael Serrano",
     "Machine Learning Engineer",

@@ -21,9 +21,10 @@ import {
 
 interface TimelineProps {
   experiences: ExperienceInterface[];
+  highlightCardId?: string | null;
 }
 
-const Timeline: React.FC<TimelineProps> = ({ experiences }) => {
+const Timeline: React.FC<TimelineProps> = ({ experiences, highlightCardId }) => {
   const [open, setOpen] = React.useState(false);
   const [selectedExperience, setSelectedExperience] =
     React.useState<ExperienceInterface | null>(null);
@@ -45,6 +46,7 @@ const Timeline: React.FC<TimelineProps> = ({ experiences }) => {
       {sortedExperiences.map((experience, index) => (
         <AnimatedSection
           key={experience.id}
+          id={`spotlight-card-experience-${experience.id}`}
           delay={0.1 * (index + 1)}
           direction="up"
         >
@@ -97,9 +99,9 @@ const Timeline: React.FC<TimelineProps> = ({ experiences }) => {
               </div>
             </div>
             <Button
-              variant="outline"
+              variant="default"
               size="sm"
-              className="rounded-lg w-full sm:w-auto"
+              className="rounded-lg w-full sm:w-auto font-semibold shadow-sm hover:shadow-md transition-shadow"
               onClick={() => openDetail(experience)}
             >
               View Details
