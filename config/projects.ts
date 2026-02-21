@@ -113,32 +113,48 @@ export const Projects: ProjectInterface[] = [
     },
   },
   {
-    id: "hitl-graphrag",
-    companyName: "HITL-GraphRAG (SERC)",
+    id: "conceptq",
+    companyName: "ConceptQ",
     type: "Personal",
     category: ["Full Stack", "Backend", "Web Dev"],
     shortDescription:
-      "Human-in-the-Loop GraphRAG prototype at MIT: Bloom's Taxonomy–aligned questions from course materials, map-reduce LLM pipeline, and interactive React Flow canvas with Dagre for multi-document RAG.",
-    techStack: ["Python", "Typescript", "React", "Next.js"],
+      "An educational assessment generator built at MIT SERC that mitigates AI hallucination. It extracts concept dependency graphs from course materials and allows instructors to visually curate them before generating Bloom's Taxonomy–aligned quizzes.",
+    techStack: ["Python", "FastAPI", "Typescript", "React", "Next.js"],
     startDate: new Date("2025-01-01"),
-    endDate: new Date("2025-12-01"),
-    companyLogoImg: "/logo.png",
+    endDate: new Date("2025-05-01"),
+    companyLogoImg: "/projects/concept-q/conceptq_demo_1.png",
     pagesInfoArr: [
       {
-        title: "GraphRAG & Canvas",
+        title: "ConceptQ Platform",
         description:
-          "Map-reduce LLM pipeline for concept knowledge graphs from multi-format documents; React Flow canvas with Dagre for pruning concepts and wiring prerequisite edges.",
-        imgArr: ["/logo.png"],
+          "The landing experience for the ConceptQ assessment generator, designed to bridge the gap between AI statistical generation and actual pedagogical intent.",
+        imgArr: ["/projects/concept-q/conceptq_demo_1.png"],
+      },
+      {
+        title: "Lecture Dashboard & Generation",
+        description:
+          "The main workspace where instructors upload materials, view extracted concepts, and configure Bloom's Taxonomy-level prompts to generate targeted multiple-choice questions.",
+        imgArr: ["/projects/concept-q/conceptq_demo_2.png"],
+      },
+      {
+        title: "The Calibration Interface",
+        description:
+          "An interactive React Flow canvas featuring Dagre hierarchical routing. Instructors act as the 'human-in-the-loop' to visually prune irrelevant concepts and correct prerequisite edges before generating assessments.",
+        imgArr: ["/projects/concept-q/conceptq_demo_3.png"],
       },
     ],
     descriptionDetails: {
       paragraphs: [
-        "Built a Human-in-the-Loop GraphRAG prototype at MIT to generate Bloom's Taxonomy–aligned educational questions from course materials. Engineered a map-reduce LLM pipeline that extracts concept knowledge graphs from multi-format documents, including PDFs, plain text, and OCR-scanned images. Developed an interactive React Flow canvas with Dagre hierarchical positioning, allowing instructors to visually prune concepts and wire prerequisite edges before executing multi-document RAG.",
+        "ConceptQ is a Human-in-the-Loop (HITL) educational workbench built at the MIT SERC to solve the alignment gap between LLM statistical probabilities and actual pedagogical intent. Standard generative AI often hallucinates intent, resulting in assessments that test niche footnotes rather than core learning objectives. ConceptQ shifts the focus from autonomous generation to human augmentation.",
+        "To achieve this, I engineered a Python/FastAPI backend featuring a map-reduce LLM pipeline that extracts entities and prerequisite relationships from unstructured lecture materials, outputting a noisy dependency graph. Documents are chunked, embedded, and stored in an in-memory vector database for sub-second cosine retrieval.",
+        "The core contribution is the frontend interface, built with React Flow and Dagre. It visualizes the raw graph, empowering instructors to manually prune nodes and correct logical edges. Once calibrated, a Graph-Constrained generation step utilizes Bloom's Taxonomy-level prompts alongside the retrieved text to produce highly relevant, accurately mapped multiple-choice questions."
       ],
       bullets: [
-        "Built a Human-in-the-Loop GraphRAG prototype at MIT to generate Bloom's Taxonomy–aligned educational questions from course materials.",
-        "Engineered a map-reduce LLM pipeline that extracts concept knowledge graphs from multi-format documents, including PDFs, plain text, and OCR-scanned images.",
-        "Developed an interactive React Flow canvas with Dagre hierarchical positioning, allowing instructors to visually prune concepts and wire prerequisite edges before executing multi-document RAG.",
+        "Architected an end-to-end educational workbench to eliminate 'hallucinated intent' in AI-generated assessments by strictly conditioning RAG generation on a human-curated concept graph.",
+        "Engineered a parallelized Python backend (FastAPI) featuring a map-reduce LLM extraction pipeline to parse multi-format documents (PDF, OCR images) into structured JSON adjacency lists.",
+        "Built a robust, sub-second in-memory vector store utilizing sentence-aware chunking and NumPy cosine similarity for efficient top-k passage retrieval.",
+        "Developed an interactive frontend utilizing React Flow and Dagre for hierarchical layout, allowing users to visually edit, prune, and re-organize pedagogical dependency networks.",
+        "Designed sophisticated generation prompts targeting specific Bloom's Taxonomy levels to produce high-quality, randomized multiple-choice questions mapped 1:1 with approved concepts."
       ],
     },
   },
