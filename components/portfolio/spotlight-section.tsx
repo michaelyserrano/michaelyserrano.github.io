@@ -42,13 +42,8 @@ const transition = { duration: 0.25, ease: "easeOut" as const };
 
 const POLL_MS = 120;
 
-const HIGHLIGHT_DURATION_MS = 2500;
-/** Inline ring so highlight is visible even if Tailwind purges the class */
-const HIGHLIGHT_STYLE = {
-  boxShadow: "0 0 0 2px hsl(var(--primary))",
-  outline: "2px solid hsl(var(--primary))",
-  outlineOffset: "2px",
-};
+/** How long the card's own breathing glow stays active (one slow pulse in and out, then done) */
+const HIGHLIGHT_DURATION_MS = 1000;
 
 export function SpotlightSection({
   projects,
@@ -112,34 +107,23 @@ export function SpotlightSection({
     return () => clearInterval(id);
   }, []);
 
-  // Scroll to card and apply temporary highlight when tab + highlightCardId are set.
-  // Wait for AnimatePresence (mode="wait") to mount the tab, then find element and apply inline styles.
+  // Scroll to card when tab + highlightCardId are set. The card's own isHighlighted
+  // styling (breathing glow, ring, chevron) provides the highlight; we do not apply
+  // inline outline/boxShadow here to avoid a janky rectangular highlight on the wrapper.
   useEffect(() => {
     if (!highlightCardId || !activeTab) return;
     const cardElementId = `spotlight-card-${activeTab}-${highlightCardId}`;
-    let removeTimer: ReturnType<typeof setTimeout> | null = null;
+    let clearHighlightTimer: ReturnType<typeof setTimeout> | null = null;
     let retryInterval: ReturnType<typeof setInterval> | null = null;
 
-    const applyHighlight = (el: HTMLElement) => {
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
-      const prevOutline = el.style.outline;
-      const prevOutlineOffset = el.style.outlineOffset;
-      const prevBoxShadow = el.style.boxShadow;
-      el.style.outline = HIGHLIGHT_STYLE.outline;
-      el.style.outlineOffset = HIGHLIGHT_STYLE.outlineOffset;
-      el.style.boxShadow = HIGHLIGHT_STYLE.boxShadow;
-      removeTimer = setTimeout(() => {
-        el.style.outline = prevOutline;
-        el.style.outlineOffset = prevOutlineOffset;
-        el.style.boxShadow = prevBoxShadow;
-        setSpotlightCardId(null);
-      }, HIGHLIGHT_DURATION_MS);
-    };
-
-    const tryHighlight = () => {
+    const scrollToCard = () => {
       const el = document.getElementById(cardElementId);
       if (el) {
-        applyHighlight(el as HTMLElement);
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        clearHighlightTimer = setTimeout(
+          () => setSpotlightCardId(null),
+          HIGHLIGHT_DURATION_MS
+        );
         return true;
       }
       return false;
@@ -148,13 +132,12 @@ export function SpotlightSection({
     const RETRY_MS = 100;
     const MAX_WAIT_MS = 2000;
     let elapsed = 0;
-    // Initial delay to allow tab switch + AnimatePresence to mount content
     const timer = setTimeout(() => {
       requestAnimationFrame(() => {
-        if (tryHighlight()) return;
+        if (scrollToCard()) return;
         retryInterval = setInterval(() => {
           elapsed += RETRY_MS;
-          if (tryHighlight() || elapsed >= MAX_WAIT_MS) {
+          if (scrollToCard() || elapsed >= MAX_WAIT_MS) {
             if (retryInterval) clearInterval(retryInterval);
             retryInterval = null;
           }
@@ -164,7 +147,7 @@ export function SpotlightSection({
     return () => {
       clearTimeout(timer);
       if (retryInterval) clearInterval(retryInterval);
-      if (removeTimer) clearTimeout(removeTimer);
+      if (clearHighlightTimer) clearTimeout(clearHighlightTimer);
     };
   }, [activeTab, highlightCardId, setSpotlightCardId]);
 
@@ -215,7 +198,10 @@ export function SpotlightSection({
                 <div className="w-full space-y-6">
                   {education.map((entry) => (
                     <div key={entry.id} id={`spotlight-card-education-${entry.id}`}>
-                      <EducationCard entry={entry} />
+                      <EducationCard
+                        entry={entry}
+                        isHighlighted={highlightCardId === entry.id}
+                      />
                     </div>
                   ))}
                 </div>

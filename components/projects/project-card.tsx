@@ -21,14 +21,21 @@ import { cn } from "@/lib/utils";
 
 interface ProjectCardProps {
   project: ProjectInterface;
+  isHighlighted?: boolean;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, isHighlighted }: ProjectCardProps) {
   const [open, setOpen] = React.useState(false);
   const [imgLoaded, setImgLoaded] = React.useState(false);
 
   return (
-    <div className="relative p-6 w-full bg-background border border-border rounded-lg h-full flex flex-col">
+    <div
+      className={cn(
+        "relative p-6 w-full bg-background border border-border rounded-lg h-full flex flex-col transition-all duration-500 overflow-visible",
+        isHighlighted &&
+          "z-10 scale-[1.02] border-primary/50 animate-glow-pulse"
+      )}
+    >
       <div className="relative w-full h-[200px] flex-shrink-0 rounded-lg border border-border overflow-hidden bg-muted">
         {!imgLoaded && (
           <Skeleton className="absolute inset-0 rounded-lg" />
@@ -60,10 +67,16 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             <Button
               variant="default"
               size="sm"
-              className="rounded-lg mt-2 w-full sm:w-auto font-semibold shadow-sm hover:shadow-md transition-shadow"
+              className={cn(
+                "rounded-lg mt-2 w-full sm:w-auto font-semibold shadow-sm hover:shadow-md transition-shadow",
+                isHighlighted &&
+                  "ring-2 ring-primary/50 ring-offset-2 ring-offset-background"
+              )}
             >
               Read more
-              <Icons.chevronRight className="ml-2 h-4 w-4" />
+              <Icons.chevronRight
+                className={cn("ml-2 h-4 w-4", isHighlighted && "animate-bounce-x")}
+              />
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[800px] w-[90vw] max-h-[90vh] !flex flex-col overflow-hidden p-0">

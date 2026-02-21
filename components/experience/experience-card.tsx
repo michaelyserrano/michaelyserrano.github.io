@@ -19,16 +19,28 @@ import {
   ExperienceDetailContent,
   getDurationText,
 } from "@/components/experience/experience-detail-content";
+import { cn } from "@/lib/utils";
 
 interface ExperienceCardProps {
   experience: ExperienceInterface;
+  isHighlighted?: boolean;
 }
 
-const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
+const ExperienceCard: React.FC<ExperienceCardProps> = ({
+  experience,
+  isHighlighted,
+}) => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className="group relative overflow-hidden rounded-lg border border-border bg-background p-6 transition-all duration-300 flex flex-col h-full">
+    <div
+      className={cn(
+        "group relative rounded-lg border border-border bg-background p-6 transition-all duration-500 flex flex-col h-full",
+        isHighlighted
+          ? "z-10 scale-[1.02] border-primary/50 animate-glow-pulse overflow-visible"
+          : "overflow-hidden"
+      )}
+    >
       <div className="flex items-start gap-3 sm:gap-4">
         {experience.logo && (
           <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg border-2 border-border overflow-hidden bg-white flex-shrink-0">
@@ -95,10 +107,16 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience }) => {
             <Button
               variant="default"
               size="sm"
-              className="rounded-lg w-full sm:w-auto mt-auto font-semibold shadow-sm hover:shadow-md transition-shadow"
+              className={cn(
+                "rounded-lg w-full sm:w-auto mt-auto font-semibold shadow-sm hover:shadow-md transition-shadow",
+                isHighlighted &&
+                  "ring-2 ring-primary/50 ring-offset-2 ring-offset-background"
+              )}
             >
               View Details
-              <Icons.chevronRight className="ml-2 h-4 w-4" />
+              <Icons.chevronRight
+                className={cn("ml-2 h-4 w-4", isHighlighted && "animate-bounce-x")}
+              />
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[800px] w-[90vw] max-h-[90vh] !flex flex-col overflow-hidden p-0">

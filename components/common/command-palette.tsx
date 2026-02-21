@@ -27,7 +27,7 @@ import { cn } from "@/lib/utils";
 
 const ROTATING_PLACEHOLDERS = [
   "Search 'Roblox'...",
-  "Try 'Savaal LLM'...",
+  "Learn about 'Savaal'...",
   "Explore 'Rindler'...",
   "Type 'CV' or 'Hire'...",
 ];

@@ -15,7 +15,7 @@ import profileImg from "@/public/profile-img.png";
 
 const ROTATING_PLACEHOLDERS = [
   "Search 'Roblox'...",
-  "Try 'Savaal LLM'...",
+  "Try 'Savaal'...",
   "Explore 'Rindler'...",
   "Jump to 'Education'...",
 ];

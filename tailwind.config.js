@@ -62,6 +62,25 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      keyframes: {
+        "glow-pulse": {
+          "0%": { boxShadow: "0 0 48px -6px hsl(var(--primary) / 0.06)" },
+          "20%": { boxShadow: "0 0 52px -6px hsl(var(--primary) / 0.08)" },
+          "40%": { boxShadow: "0 0 56px -6px hsl(var(--primary) / 0.11)" },
+          "50%": { boxShadow: "0 0 60px -6px hsl(var(--primary) / 0.14)" },
+          "60%": { boxShadow: "0 0 56px -6px hsl(var(--primary) / 0.11)" },
+          "80%": { boxShadow: "0 0 52px -6px hsl(var(--primary) / 0.08)" },
+          "100%": { boxShadow: "0 0 48px -6px hsl(var(--primary) / 0.06)" },
+        },
+        "bounce-x": {
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(25%)" },
+        },
+      },
+      animation: {
+        "glow-pulse": "glow-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite forwards",
+        "bounce-x": "bounce-x 2s ease-in-out infinite",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

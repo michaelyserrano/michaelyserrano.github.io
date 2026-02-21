@@ -4,15 +4,23 @@ import Image from "next/image";
 import { AnimatedSection } from "@/components/common/animated-section";
 import { Badge } from "@/components/ui/badge";
 import { EducationEntry } from "@/config/education";
+import { cn } from "@/lib/utils";
 
 interface EducationCardProps {
   entry: EducationEntry;
+  isHighlighted?: boolean;
 }
 
-export function EducationCard({ entry }: EducationCardProps) {
+export function EducationCard({ entry, isHighlighted }: EducationCardProps) {
   return (
     <AnimatedSection direction="up" className="w-full">
-      <div className="flex flex-col sm:flex-row gap-4 sm:items-start">
+      <div
+        className={cn(
+          "flex flex-col sm:flex-row gap-4 sm:items-start rounded-lg border border-transparent transition-all duration-500",
+          isHighlighted &&
+            "z-10 scale-[1.02] border-primary/50 animate-glow-pulse overflow-visible"
+        )}
+      >
         {/* Visual Anchor: Logo – object-contain + padding so the full logo is visible */}
         <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-md border bg-muted p-1">
           {entry.logo ? (

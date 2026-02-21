@@ -18,6 +18,7 @@ import {
   ExperienceDetailContent,
   getDurationText,
 } from "@/components/experience/experience-detail-content";
+import { cn } from "@/lib/utils";
 
 interface TimelineProps {
   experiences: ExperienceInterface[];
@@ -50,7 +51,13 @@ const Timeline: React.FC<TimelineProps> = ({ experiences, highlightCardId }) => 
           delay={0.1 * (index + 1)}
           direction="up"
         >
-          <div className="w-full p-6 bg-background border border-border rounded-lg transition-all duration-300 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+          <div
+            className={cn(
+              "w-full p-6 bg-background border border-border rounded-lg transition-all duration-500 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4",
+              highlightCardId === experience.id &&
+                "z-10 scale-[1.02] border-primary/50 animate-glow-pulse overflow-visible"
+            )}
+          >
             <div className="flex items-start gap-4 flex-1 min-w-0">
               {experience.logo && (
                 <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg border-2 border-border overflow-hidden bg-white flex-shrink-0">
@@ -101,11 +108,20 @@ const Timeline: React.FC<TimelineProps> = ({ experiences, highlightCardId }) => 
             <Button
               variant="default"
               size="sm"
-              className="rounded-lg w-full sm:w-auto font-semibold shadow-sm hover:shadow-md transition-shadow"
+              className={cn(
+                "rounded-lg w-full sm:w-auto font-semibold shadow-sm hover:shadow-md transition-shadow",
+                highlightCardId === experience.id &&
+                  "ring-2 ring-primary/50 ring-offset-2 ring-offset-background"
+              )}
               onClick={() => openDetail(experience)}
             >
               View Details
-              <Icons.chevronRight className="ml-2 h-4 w-4" />
+              <Icons.chevronRight
+                className={cn(
+                  "ml-2 h-4 w-4",
+                  highlightCardId === experience.id && "animate-bounce-x"
+                )}
+              />
             </Button>
           </div>
         </AnimatedSection>

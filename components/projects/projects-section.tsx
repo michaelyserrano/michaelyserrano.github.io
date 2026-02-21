@@ -21,7 +21,10 @@ export function ProjectsSection({ projects, highlightCardId }: ProjectsSectionPr
             direction="up"
             className="h-full w-full min-w-0"
           >
-            <ProjectCard project={project} />
+            <ProjectCard
+              project={project}
+              isHighlighted={highlightCardId === project.id}
+            />
           </AnimatedSection>
         ))}
       </div>
