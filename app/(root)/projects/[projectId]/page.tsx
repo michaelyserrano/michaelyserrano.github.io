@@ -19,6 +19,10 @@ interface ProjectPageProps {
 
 const githubUsername = "michaelyserrano";
 
+export function generateStaticParams() {
+  return Projects.map((p) => ({ projectId: p.id }));
+}
+
 export default async function Project({ params }: ProjectPageProps) {
   const { projectId } = await params;
   let project = Projects.find((val) => val.id === projectId);
