@@ -11,7 +11,6 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/h
 import { SocialLinks } from "@/config/socials";
 import { cn } from "@/lib/utils";
 import { useSpotlightStore } from "@/store/spotlight-store";
-import profileImg from "@/public/profile-img.png";
 
 const ROTATING_PLACEHOLDERS = [
   "Search 'Roblox'...",
@@ -53,7 +52,7 @@ export function HeroSection() {
         <div className="flex w-full max-w-full min-w-0 flex-col items-center gap-6 text-center md:flex-row md:items-end md:gap-8 md:text-left">
           <div className="relative w-[min(50vw,12rem)] aspect-square shrink-0 md:w-52 lg:w-64 rounded-full overflow-hidden border-[6px] border-primary md:border-8 bg-primary">
             <Image
-              src={profileImg}
+              src="/profile-img.png"
               fill
               sizes="(max-width: 768px) 50vw, 14rem"
               className="object-cover rounded-full"
