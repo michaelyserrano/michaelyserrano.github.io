@@ -23,15 +23,12 @@ export const experiences: ExperienceInterface[] = [
     startDate: new Date("2025-05-01"),
     endDate: new Date("2025-08-01"),
     description: [
-      "Identified a critical training data bottleneck in the Account Safety team that forced the use of simple regression models and caused fragmented, untrustworthy metrics.",
-      "Introduced and operationalized a Weak Supervision approach using Snorkel to programmatically generate massive datasets, effectively bypassing the manual labeling bottleneck.",
-      "Architected a centralized MLOps ingestion workflow as a single source of truth, compressing the model release cycle from months to just one hour.",
-      "Unlocked the ability to hot-swap models in production and deploy deeper architectures, improving alt-account detection recall from 94% to 96%.",
+      "Worked within the Account Safety team to overcome critical training data bottlenecks and fragmented evaluation metrics. Spearheaded the transition from simple regression models trained on manual labels to deeper architectures utilizing programmatically generated datasets."
     ],
     achievements: [
-      "Identified critical training data bottleneck; introduced Weak Supervision with Snorkel to generate large-scale labeled data and bypass manual labeling.",
-      "Architected centralized MLOps ingestion workflow as single source of truth, reducing model release cycle from months to one hour.",
-      "Enabled hot-swap of models in production and deeper architectures; improved alt-account detection recall from 94% to 96%.",
+      "Introduced and operationalized a Weak Supervision approach using Snorkel to programmatically generate massive datasets, effectively bypassing the manual labeling bottleneck.",
+      "Architected a centralized MLOps ingestion workflow as a single source of truth, restoring trust in metrics and compressing the model release cycle from months to just one hour.",
+      "Unlocked the ability to hot-swap models in production and deploy deeper architectures, improving alt-account detection recall from 94% to 96%."
     ],
     skills: ["Python", "PyTorch", "TensorFlow", "AWS"],
     companyUrl: "https://www.roblox.com",
@@ -45,15 +42,11 @@ export const experiences: ExperienceInterface[] = [
     startDate: new Date("2025-01-01"),
     endDate: "Present",
     description: [
-      "Transitioning \"Savaal,\" a concept-driven question generation system, into an autonomous, stateful, and voice-interactive educational agent.",
-      "The system is designed to diagnose conceptual gaps via deep retrieval and administer Socratic oral examinations.",
-      "Implemented the Model Context Protocol (MCP) and Von Neumann Multi-Agent System (vNMF) architectures to transform the static tool into a dynamic agent.",
-      "Utilized a LangGraph state machine to orchestrate the agent's executive functions, providing planning, memory, and decision-making capabilities.",
+      "Transitioning 'Savaal,' a concept-driven question generation system, into an autonomous, stateful, and voice-interactive educational agent designed to diagnose conceptual gaps."
     ],
     achievements: [
-      "Transitioning Savaal from concept-driven question generator to autonomous, stateful, voice-interactive educational agent.",
-      "Implementing MCP and vNMF architectures to transform static tool into dynamic agent; deep retrieval and Socratic oral examinations.",
-      "Orchestrating agent executive functions (planning, memory, decision-making) via LangGraph state machine.",
+      "Implementing MCP and Von Neumann Multi-Agent System (vNMF) architectures to turn the static tool into a dynamic agent capable of deep retrieval and Socratic oral examinations.",
+      "Engineering a LangGraph state machine to orchestrate the agent's executive functions, providing robust planning, memory, and decision-making capabilities."
     ],
     skills: ["Python", "Typescript", "React", "Next.js"],
     companyUrl: "https://www.csail.mit.edu",
@@ -67,14 +60,11 @@ export const experiences: ExperienceInterface[] = [
     startDate: new Date("2023-06-01"),
     endDate: new Date("2023-09-01"),
     description: [
-      "Assessed lightweight algorithms for medical device authentications and transmissions.",
-      "Developed a TLS 1.3 protocol implementation featuring a post-quantum authentication signature.",
-      "Focused on data protection to enhance internet communication cybersecurity against quantum attacks.",
+      "Researched and evaluated lightweight cryptographic algorithms to ensure secure medical device authentication and defend internet communications against quantum computing threats."
     ],
     achievements: [
-      "Assessed lightweight algorithms for medical device authentication and secure transmissions.",
-      "Developed TLS 1.3 implementation with post-quantum authentication signature for quantum-resistant communication security.",
-      "Focused on data protection to enhance cybersecurity against quantum attacks.",
+      "Developed a custom TLS 1.3 protocol implementation featuring a post-quantum authentication signature.",
+      "Identified and addressed vulnerabilities in data protection protocols to enhance overall cybersecurity against quantum attacks."
     ],
     skills: ["Python", "Typescript"],
     companyUrl: "https://www.ipn.mx",
@@ -88,12 +78,11 @@ export const experiences: ExperienceInterface[] = [
     startDate: new Date("2023-01-02"),
     endDate: new Date("2023-05-01"),
     description: [
-      "Designed and extracted information on Deep Q-Network dynamic pricing algorithms.",
-      "Implemented and assessed the accuracy of simulations that gauge the efficacy of pricing strategies.",
+      "Conducted research on dynamic pricing strategies, specifically focusing on the application of reinforcement learning models to optimize algorithmic pricing."
     ],
     achievements: [
-      "Designed and extracted information on DQN dynamic pricing algorithms.",
-      "Implemented and assessed simulation accuracy for evaluating pricing strategy efficacy.",
+      "Designed and extracted comprehensive information on Deep Q-Network (DQN) algorithms for dynamic pricing.",
+      "Implemented and evaluated the accuracy of simulations to systematically gauge the efficacy and profitability of various pricing strategies."
     ],
     skills: ["Python", "TensorFlow", "PyTorch"],
     companyUrl: "https://mitsloan.mit.edu",
@@ -107,15 +96,12 @@ export const experiences: ExperienceInterface[] = [
     startDate: new Date("2024-06-01"),
     endDate: new Date("2024-08-01"),
     description: [
-      "Built and trained a GCN model to partition event attendees into compatible groups.",
-      "Repurposed pre-existing algorithms to generate synthetic data for model training.",
-      "Refactored matching algorithm codebase and documentation, yielding a 54x speed-up.",
-      "Yielded a 99.2% group satisfaction rating from users with the ML matching algorithm.",
+      "Developed machine learning solutions to optimize user matchmaking and event group partitioning, significantly enhancing algorithmic performance and user satisfaction."
     ],
     achievements: [
-      "Built and trained a GCN model to partition event attendees into compatible groups.",
-      "Repurposed pre-existing algorithms for synthetic data generation; refactored matching codebase and docs for 54x speed-up.",
-      "Achieved 99.2% group satisfaction rating from users with the ML matching algorithm.",
+      "Built and trained a Graph Convolutional Network (GCN) model, alongside repurposing algorithms for synthetic data generation, to partition event attendees into highly compatible groups.",
+      "Refactored the core matching algorithm codebase and documentation, yielding a 54x computational speed-up.",
+      "Achieved a 99.2% group satisfaction rating from users through the deployment of the new ML matching algorithm."
     ],
     skills: ["Python", "PyTorch", "TensorFlow"],
     companyUrl: "https://www.betteroffsocial.com",

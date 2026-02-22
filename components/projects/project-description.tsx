@@ -11,11 +11,11 @@ const ProjectDescription: React.FC<{
           {paragraph}
         </p>
       ))}
-      <ul className="list-disc pl-6 mt-4">
-        {bullets.map((bullet, index) => (
-          <li key={index}>{bullet}</li>
-        ))}
-      </ul>
+      {bullets.map((bullet, index) => (
+        <p className="mb-4" key={index}>
+          {bullet}
+        </p>
+      ))}
     </div>
   );
 };

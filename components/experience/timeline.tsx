@@ -72,9 +72,13 @@ const Timeline: React.FC<TimelineProps> = ({ experiences, highlightCardId }) => 
               )}
               <div className="flex-1 min-w-0">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
-                  <h3 className="text-lg sm:text-xl font-bold text-foreground">
+                  <button
+                    type="button"
+                    onClick={() => openDetail(experience)}
+                    className="text-lg sm:text-xl font-bold text-foreground text-left bg-transparent border-none p-0 cursor-pointer hover:opacity-90 focus:outline-none focus:ring-0 rounded-none"
+                  >
                     {experience.position}
-                  </h3>
+                  </button>
                   <span className="inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-primary/10 text-primary border border-primary/20 w-fit">
                     {getDurationText(
                       experience.startDate,

@@ -36,33 +36,38 @@ export default function ProjectCard({ project, isHighlighted }: ProjectCardProps
           "z-10 scale-[1.02] border-primary/50 animate-glow-pulse"
       )}
     >
-      <div className="relative w-full h-[200px] flex-shrink-0 rounded-lg border border-border overflow-hidden bg-muted">
-        {!imgLoaded && (
-          <Skeleton className="absolute inset-0 rounded-lg" />
-        )}
-        <Image
-          className={cn(
-            "rounded-lg border border-border object-cover transition-opacity duration-200",
-            imgLoaded ? "opacity-100" : "opacity-0"
-          )}
-          src={project.companyLogoImg}
-          alt={project.companyName}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          onLoad={() => setImgLoaded(true)}
-        />
-      </div>
-      <div className="pt-5 space-y-3 flex flex-col flex-grow">
-        <h5 className="text-2xl font-bold tracking-tight text-foreground">
-          {project.companyName}
-        </h5>
-        <p className="line-clamp-3 font-normal text-muted-foreground flex-grow">
-          {project.shortDescription}
-        </p>
-        <div className="flex gap-2 flex-wrap">
-          <ChipContainer textArr={project.category} />
-        </div>
-        <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <button
+            type="button"
+            className="relative w-full h-[200px] flex-shrink-0 overflow-hidden p-3 flex items-center justify-center cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset rounded-lg"
+          >
+            {!imgLoaded && (
+              <Skeleton className="absolute inset-0 rounded-lg" />
+            )}
+            <Image
+              className={cn(
+                "rounded-lg border-0 object-contain transition-opacity duration-200",
+                imgLoaded ? "opacity-100" : "opacity-0"
+              )}
+              src={project.companyLogoImg}
+              alt={project.companyName}
+              fill
+              sizes="(max-width: 768px) 100vw, 33vw"
+              onLoad={() => setImgLoaded(true)}
+            />
+          </button>
+        </DialogTrigger>
+        <div className="pt-5 space-y-3 flex flex-col flex-grow">
+          <h5 className="text-2xl font-bold tracking-tight text-foreground">
+            {project.companyName}
+          </h5>
+          <p className="line-clamp-3 font-normal text-muted-foreground flex-grow">
+            {project.shortDescription}
+          </p>
+          <div className="flex gap-2 flex-wrap">
+            <ChipContainer textArr={project.category} />
+          </div>
           <DialogTrigger asChild>
             <Button
               variant="default"
@@ -79,7 +84,8 @@ export default function ProjectCard({ project, isHighlighted }: ProjectCardProps
               />
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[800px] w-[90vw] max-h-[90vh] !flex flex-col overflow-hidden p-0">
+        </div>
+        <DialogContent className="sm:max-w-[800px] w-[90vw] max-h-[90vh] !flex flex-col overflow-hidden p-0">
             <DialogHeader className="flex-shrink-0 px-6 pt-6 pb-2">
               <DialogTitle className="text-2xl">{project.companyName}</DialogTitle>
             </DialogHeader>
@@ -91,12 +97,12 @@ export default function ProjectCard({ project, isHighlighted }: ProjectCardProps
                 <p className="text-muted-foreground">
                   {project.shortDescription}
                 </p>
-                <div className="relative w-full aspect-video rounded-lg border border-border overflow-hidden bg-muted">
+                <div className="relative w-full aspect-video overflow-hidden p-4 flex items-center justify-center">
                   <Image
                     src={project.companyLogoImg}
                     alt={project.companyName}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                     sizes="(max-width: 800px) 90vw, 800px"
                   />
                 </div>
@@ -156,8 +162,7 @@ export default function ProjectCard({ project, isHighlighted }: ProjectCardProps
               </div>
             </ScrollArea>
           </DialogContent>
-        </Dialog>
-      </div>
+      </Dialog>
     </div>
   );
 }

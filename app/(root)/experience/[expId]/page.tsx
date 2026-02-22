@@ -79,17 +79,13 @@ export default async function ExperienceDetailPage({
             <h3 className="font-semibold mb-4 text-sm uppercase tracking-wide text-muted-foreground">
               Role Summary
             </h3>
-            <ul className="space-y-3">
+            <div className="space-y-3">
               {experience.description.map((desc, idx) => (
-                <li
-                  key={idx}
-                  className="text-base leading-relaxed flex items-start gap-3"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                <p key={idx} className="text-base leading-relaxed">
                   {desc}
-                </li>
+                </p>
               ))}
-            </ul>
+            </div>
           </div>
         </AnimatedSection>
       ),

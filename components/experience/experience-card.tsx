@@ -41,7 +41,8 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
           : "overflow-hidden"
       )}
     >
-      <div className="flex items-start gap-3 sm:gap-4">
+      <Dialog open={open} onOpenChange={setOpen}>
+        <div className="flex items-start gap-3 sm:gap-4">
         {experience.logo && (
           <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg border-2 border-border overflow-hidden bg-white flex-shrink-0">
             <Image
@@ -56,9 +57,14 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
         <div className="flex-1 min-w-0">
           <div className="flex flex-col gap-1 sm:gap-2">
             <div className="flex items-start sm:items-center gap-2">
-              <h3 className="text-base sm:text-lg font-bold text-foreground line-clamp-2 sm:line-clamp-1">
-                {experience.position}
-              </h3>
+              <DialogTrigger asChild>
+                <button
+                  type="button"
+                  className="text-base sm:text-lg font-bold text-foreground line-clamp-2 sm:line-clamp-1 text-left bg-transparent border-none p-0 cursor-pointer hover:opacity-90 focus:outline-none focus:ring-0 rounded-none"
+                >
+                  {experience.position}
+                </button>
+              </DialogTrigger>
               {experience.companyUrl && (
                 <a
                   href={experience.companyUrl}
@@ -100,9 +106,8 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
             )}
           </div>
         </div>
-      </div>
-      <div className="mt-4 flex justify-end flex-shrink-0">
-        <Dialog open={open} onOpenChange={setOpen}>
+        </div>
+        <div className="mt-4 flex justify-end flex-shrink-0">
           <DialogTrigger asChild>
             <Button
               variant="default"
@@ -129,8 +134,8 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
               <ExperienceDetailContent experience={experience} />
             </ScrollArea>
           </DialogContent>
-        </Dialog>
-      </div>
+      </Dialog>
+        </div>
     </div>
   );
 };

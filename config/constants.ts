@@ -28,6 +28,7 @@ export type ValidSkills =
   | "PostgreSQL"
   | "Redis"
   | "Git"
+  | "Go"
   | "CI/CD"
   | "Jenkins"
   | "FastAPI"
