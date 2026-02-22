@@ -31,19 +31,21 @@ export const Projects: ProjectInterface[] = [
   {
     id: "rindler",
     companyName: "Rindler",
-    type: "Personal",
-    category: ["Full Stack", "Web Dev", "Backend"],
+    type: "Startup", 
+    category: ["Frontend", "Product Strategy", "Full Stack"],
     shortDescription:
-      "Co-founder of an agentic web navigation middleware layer — defining vision, business strategy, fundraising, and leading product and frontend architecture with agent telemetry for self-healing execution.",
+      "Co-founder driving business strategy, product vision, and frontend architecture. I build the user interface and the agent telemetry tools that capture interactions to inform our self-healing execution engine.",
     websiteLink: "#",
     techStack: ["Typescript", "React", "Next.js", "Node.js", "AWS"],
-    startDate: new Date("2024-01-01"),
-    endDate: new Date("2025-12-01"),
+    startDate: new Date("2025-11-01"),
+    endDate: new Date(),
     companyLogoImg: "/projects/rindler/rindler_logo.png",
     pagesInfoArr: [],
     descriptionDetails: {
       paragraphs: [
-        "Rindler is an agentic web navigation middleware layer I co-founded. I define the company's overarching vision, business strategy, and fundraising roadmap. I lead the product experience and frontend architecture by building the robust user interface. I develop the agent telemetry tools designed to capture and analyze user and agent interactions on client sites to inform self-healing execution.",
+        "As a co-founder of Rindler, I define our overarching vision, business strategy, and fundraising roadmap. We are building a 'Reliability-as-a-Service' middleware designed to bridge AI agents with complex web applications. By translating volatile web interfaces into deterministic APIs, we allow e-commerce companies to support agentic traffic without having to build and maintain brittle in-house infrastructure.",
+        "On the technical side, I lead the product experience and frontend architecture. I am responsible for building the robust user interface that our clients use to seamlessly manage their integrations and agentic web traffic.",
+        "A major focus of my engineering work is developing Rindler's agent telemetry tools. I architect the systems designed to capture and analyze user and agent interactions directly on client sites. This telemetry data is critical, as it feeds directly into our backend to inform the resilient, self-healing execution pathways our workers rely on."
       ],
       bullets: [],
     },
