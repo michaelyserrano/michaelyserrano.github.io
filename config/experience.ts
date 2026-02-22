@@ -36,19 +36,21 @@ export const experiences: ExperienceInterface[] = [
   },
   {
     id: "mit-csail",
-    position: "MEng Researcher, Agentic AI",
+    position: "Researcher, Agentic AI",
     company: "MIT CSAIL",
     location: "Cambridge, MA",
     startDate: new Date("2025-01-01"),
     endDate: "Present",
     description: [
-      "Transitioning 'Savaal,' a concept-driven question generation system, into an autonomous, stateful, and voice-interactive educational agent designed to diagnose conceptual gaps."
+      "Leading the continuous evolution of 'Savaal', transitioning it from a deployed document-based assessment tool into an autonomous, voice-interactive educational agent."
     ],
     achievements: [
-      "Implementing MCP and Von Neumann Multi-Agent System (vNMF) architectures to turn the static tool into a dynamic agent capable of deep retrieval and Socratic oral examinations.",
-      "Engineering a LangGraph state machine to orchestrate the agent's executive functions, providing robust planning, memory, and decision-making capabilities."
+      "[ MEng ] Transitioning the platform into a dynamic agent capable of deep retrieval and Socratic oral exams using MCP and vNMF architectures.",
+      "[ MEng ] Engineering a LangGraph state machine to orchestrate the agent's executive functions, including planning, memory, and decision-making.",
+      "[ Undergrad ] Built and deployed the foundational full-stack web application for document-based quiz generation directly to MIT course staff.",
+      "[ Undergrad ] Engineered core backend systems, including group-based access controls, robust source-text citations, and user telemetry analytics."
     ],
-    skills: ["Python", "Typescript", "React", "Next.js"],
+    skills: ["Python", "Typescript", "React", "Next.js", "PostgreSQL"],
     companyUrl: "https://www.csail.mit.edu",
     logo: "/experience/csail_logo.jpg",
   },

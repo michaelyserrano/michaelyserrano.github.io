@@ -65,8 +65,15 @@ export default function ProjectCard({ project, isHighlighted }: ProjectCardProps
           <p className="line-clamp-3 font-normal text-muted-foreground flex-grow">
             {project.shortDescription}
           </p>
-          <div className="flex gap-2 flex-wrap">
-            <ChipContainer textArr={project.category} />
+          <div className="flex gap-2 flex-wrap mb-2">
+            {project.category.map((cat, i) => (
+              <span
+                key={i}
+                className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20"
+              >
+                {cat}
+              </span>
+            ))}
           </div>
           <DialogTrigger asChild>
             <Button
@@ -91,8 +98,15 @@ export default function ProjectCard({ project, isHighlighted }: ProjectCardProps
             </DialogHeader>
             <ScrollArea className="flex-1 min-h-0 overflow-y-auto px-6 pb-6">
               <div className="pr-4 space-y-6">
-                <div className="flex flex-wrap gap-2">
-                  <ChipContainer textArr={project.category} />
+                <div className="flex gap-2 flex-wrap mb-2">
+                  {project.category.map((cat, i) => (
+                    <span
+                      key={i}
+                      className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20"
+                    >
+                      {cat}
+                    </span>
+                  ))}
                 </div>
                 <p className="text-muted-foreground">
                   {project.shortDescription}

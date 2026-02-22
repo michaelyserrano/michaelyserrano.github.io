@@ -77,16 +77,40 @@ export function ExperienceDetailContent({
         <h3 className="font-semibold mb-3 text-sm uppercase tracking-wide text-muted-foreground">
           Key Achievements
         </h3>
-        <ul className="space-y-2">
-          {experience.achievements.map((achievement, idx) => (
-            <li
-              key={idx}
-              className="text-sm leading-relaxed flex items-start gap-3"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-              {achievement}
-            </li>
-          ))}
+        <ul className="space-y-3">
+          {experience.achievements.map((achievement, idx) => {
+            // Extract the tag and the text
+            const match = achievement.match(/^\[(.*?)\]\s*(.*)/);
+            const tag = match ? match[1].trim() : null;
+            const text = match ? match[2] : achievement;
+
+            // UI Trick 1: Detect if this bullet starts a new group (e.g., switching from MEng to Undergrad)
+            const prevMatch = idx > 0 ? experience.achievements[idx - 1].match(/^\[(.*?)\]/) : null;
+            const prevTag = prevMatch ? prevMatch[1].trim() : null;
+            const isNewTagGroup = tag && tag !== prevTag && idx !== 0;
+
+            return (
+              <li
+                key={idx}
+                // If it's a new group, add top margin, padding, and a subtle border line
+                className={`text-sm leading-relaxed flex items-start gap-3 ${
+                  isNewTagGroup ? "mt-5 pt-3 border-t border-border/50" : ""
+                }`}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0 shadow-sm" />
+                <div className="flex-1">
+                  {tag && (
+                    // UI Trick 2: Themed badges instead of gray ones
+                    <span className="mr-2 inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20">
+                      {tag}
+                    </span>
+                  )}
+                  {/* Slightly fade the text so the badge pops more */}
+                  <span className="text-foreground/80">{text}</span>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
