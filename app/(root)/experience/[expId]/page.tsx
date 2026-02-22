@@ -19,6 +19,10 @@ interface ExperienceDetailPageProps {
   }>;
 }
 
+export function generateStaticParams() {
+  return experiences.map((e) => ({ expId: e.id }));
+}
+
 // Helper function to extract year from date
 const getYearFromDate = (date: Date): string => {
   return new Date(date).getFullYear().toString();
