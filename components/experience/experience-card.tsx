@@ -134,8 +134,8 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
               <ExperienceDetailContent experience={experience} />
             </ScrollArea>
           </DialogContent>
-      </Dialog>
         </div>
+      </Dialog>
     </div>
   );
 };
