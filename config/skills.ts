@@ -106,8 +106,26 @@ export const skillsUnsorted: skillsInterface[] = [
     category: "Frontend & Full-Stack",
   },
   {
+    name: "Go",
+    description: "High-performance backend services and MCP servers.",
+    icon: Icons.laptop,
+    category: "Backend & Databases",
+  },
+  {
+    name: "Rust",
+    description: "Secure, high-performance systems and desktop apps.",
+    icon: Icons.laptop,
+    category: "Backend & Databases",
+  },
+  {
     name: "FastAPI",
     description: "High-performance Python APIs.",
+    icon: Icons.laptop,
+    category: "Backend & Databases",
+  },
+  {
+    name: "Celery",
+    description: "Distributed task queues for async processing.",
     icon: Icons.laptop,
     category: "Backend & Databases",
   },

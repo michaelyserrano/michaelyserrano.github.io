@@ -24,17 +24,17 @@ const nextConfig = {
 if (process.env.STATIC_EXPORT !== "1") {
   nextConfig.headers = async () => [
     {
-      source: "/api/sb-contact",
+      source: "/(.*)",
       headers: [
-        { key: "Access-Control-Allow-Credentials", value: "true" },
+        { key: "X-Frame-Options", value: "DENY" },
+        { key: "X-Content-Type-Options", value: "nosniff" },
         {
-          key: "Access-Control-Allow-Methods",
-          value: "GET,DELETE,PATCH,POST,PUT",
+          key: "Referrer-Policy",
+          value: "strict-origin-when-cross-origin",
         },
         {
-          key: "Access-Control-Allow-Headers",
-          value:
-            "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+          key: "Permissions-Policy",
+          value: "camera=(), microphone=(), geolocation=()",
         },
       ],
     },

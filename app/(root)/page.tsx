@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Script from "next/script";
 
 import { HomePageContent } from "@/components/portfolio/home-page-content";
 import { pagesConfig } from "@/config/pages";
@@ -45,13 +44,11 @@ export default function IndexPage() {
 
   return (
     <>
-      <Script
-        id="schema-person"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
-      <Script
-        id="schema-software"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
       />

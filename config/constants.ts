@@ -57,13 +57,13 @@ export type ValidSkills =
   | "Flutter"
   | "Dart"
   | "Flask"
-  | "Django"
-  | "FastAPI"
   | "SQL"
   | "NoSQL"
   | "Framer Motion"
   | "Rust"
-  | "Tauri";
+  | "Tauri"
+  | "Playwright"
+  | "Celery";
 
 export type ValidCategory =
   | "Full Stack"

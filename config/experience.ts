@@ -42,15 +42,15 @@ export const experiences: ExperienceInterface[] = [
     startDate: new Date("2025-01-01"),
     endDate: "Present",
     description: [
-      "Leading the continuous evolution of 'Savaal', transitioning it from a deployed document-based assessment tool into an autonomous, voice-interactive educational agent."
+      "Leading the continuous evolution of 'Savaal', an open-source AI quiz generation toolkit published by MIT researchers. Transitioning it from a deployed document-based assessment tool into an autonomous, voice-interactive educational agent."
     ],
     achievements: [
       "[ MEng ] Transitioning the platform into a dynamic agent capable of deep retrieval and Socratic oral exams using MCP and vNMF architectures.",
       "[ MEng ] Engineering a LangGraph state machine to orchestrate the agent's executive functions, including planning, memory, and decision-making.",
-      "[ Undergrad ] Built and deployed the foundational full-stack web application for document-based quiz generation directly to MIT course staff.",
-      "[ Undergrad ] Engineered core backend systems, including group-based access controls, robust source-text citations, and user telemetry analytics."
+      "[ Undergrad ] Built and deployed a production monorepo (Next.js 15 + FastAPI + Celery) with agentic question generation — a PdfQuizAgent performs semantic retrieval, generation, self-critique, and curation in multi-step workflows.",
+      "[ Undergrad ] Engineered core backend systems including pgvector semantic search, group-based access controls, source-text citations, SSE-based live streaming, and Weave observability for LLM tracing."
     ],
-    skills: ["Python", "Typescript", "React", "Next.js", "PostgreSQL"],
+    skills: ["Python", "Typescript", "React", "Next.js", "PostgreSQL", "FastAPI", "Redis", "Docker"],
     companyUrl: "https://www.csail.mit.edu",
     logo: "/experience/csail_logo.jpg",
   },

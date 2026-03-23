@@ -17,8 +17,6 @@ interface ProjectPageProps {
   }>;
 }
 
-const githubUsername = "michaelyserrano";
-
 export function generateStaticParams() {
   return Projects.map((p) => ({ projectId: p.id }));
 }
@@ -44,7 +42,7 @@ export default async function Project({ params }: ProjectPageProps) {
       </Link>
       <div>
         <time
-          dateTime={Date.now().toString()}
+          dateTime={project.startDate.toISOString().split("T")[0]}
           className="block text-sm text-muted-foreground"
         >
           {formatDateFromObj(project.startDate)}
@@ -54,14 +52,14 @@ export default async function Project({ params }: ProjectPageProps) {
           <div className="flex items-center">
             {project.githubLink && (
               <CustomTooltip text="Link to the source code.">
-                <Link href={project.githubLink} target="_blank">
+                <Link href={project.githubLink} target="_blank" rel="noopener noreferrer">
                   <Icons.gitHub className="w-6 ml-4 text-muted-foreground hover:text-foreground" />
                 </Link>
               </CustomTooltip>
             )}
             {project.websiteLink && (
               <CustomTooltip text="Please note that some project links may be temporarily unavailable.">
-                <Link href={project.websiteLink} target="_blank">
+                <Link href={project.websiteLink} target="_blank" rel="noopener noreferrer">
                   <Icons.externalLink className="w-6 ml-4 text-muted-foreground hover:text-foreground " />
                 </Link>
               </CustomTooltip>

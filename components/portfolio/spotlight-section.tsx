@@ -40,7 +40,6 @@ interface SpotlightSectionProps {
 
 const transition = { duration: 0.25, ease: "easeOut" as const };
 
-const POLL_MS = 120;
 
 /** How long the card's own breathing glow stays active (one slow pulse in and out, then done) */
 const HIGHLIGHT_DURATION_MS = 1000;
@@ -95,17 +94,6 @@ export function SpotlightSection({
     };
   }, []);
 
-  // Polling fallback: check hash and store periodically (only override tab when hash is present)
-  useEffect(() => {
-    const id = setInterval(() => {
-      const result = tabAndCardFromSpotlightHash(window.location.hash);
-      const fromHash = result?.tab ?? null;
-      const fromStore = useSpotlightStore.getState().spotlightTab;
-      const next = fromHash ?? fromStore;
-      if (next && next !== activeTabRef.current) setActiveTab(next);
-    }, POLL_MS);
-    return () => clearInterval(id);
-  }, []);
 
   // Scroll to card when tab + highlightCardId are set. The card's own isHighlighted
   // styling (breathing glow, ring, chevron) provides the highlight; we do not apply

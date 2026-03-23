@@ -15,11 +15,8 @@ import {
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ExperienceInterface } from "@/config/experience";
-import {
-  ExperienceDetailContent,
-  getDurationText,
-} from "@/components/experience/experience-detail-content";
-import { cn } from "@/lib/utils";
+import { ExperienceDetailContent } from "@/components/experience/experience-detail-content";
+import { cn, getDurationText } from "@/lib/utils";
 
 interface ExperienceCardProps {
   experience: ExperienceInterface;

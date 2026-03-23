@@ -1,5 +1,7 @@
 import { MetadataRoute } from "next";
 
+import { experiences } from "@/config/experience";
+import { Projects } from "@/config/projects";
 import { siteConfig } from "@/config/site";
 
 export const dynamic = "force-static";
@@ -23,5 +25,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return routes;
+  // Experience detail pages
+  const experienceRoutes = experiences.map((e) => ({
+    url: `${baseUrl}/experience/${e.id}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  // Project detail pages
+  const projectRoutes = Projects.map((p) => ({
+    url: `${baseUrl}/projects/${p.id}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
+  return [...routes, ...experienceRoutes, ...projectRoutes];
 }

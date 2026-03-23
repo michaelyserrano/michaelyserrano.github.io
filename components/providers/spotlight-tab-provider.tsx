@@ -8,11 +8,9 @@ import {
   type ReactNode,
 } from "react";
 
-export type SpotlightTabId =
-  | "experience"
-  | "projects"
-  | "education"
-  | "skills";
+import { type SpotlightTabId } from "@/lib/spotlight-tab-url";
+
+export type { SpotlightTabId };
 
 type SpotlightTabContextValue = {
   spotlightTab: SpotlightTabId;

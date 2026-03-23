@@ -1,5 +1,5 @@
 import { slugify } from "@/lib/spotlight-targets";
-import { skillsInterface } from "@/config/skills";
+import { skillsInterface, skillsByCategory } from "@/config/skills";
 import { cn } from "@/lib/utils";
 
 interface SkillsCardProps {
@@ -7,14 +7,6 @@ interface SkillsCardProps {
   groupByCategory?: boolean;
   highlightCardId?: string | null;
 }
-
-const CATEGORY_ORDER = [
-  "Machine Learning & Data",
-  "Frontend & Full-Stack",
-  "Backend & Databases",
-  "DevOps & Tools",
-  "Languages",
-] as const;
 
 function SkillChip({
   skill,
@@ -46,38 +38,35 @@ export default function SkillsCard({
   highlightCardId,
 }: SkillsCardProps) {
   if (groupByCategory) {
-    const categories = Array.from(
-      new Map(skills.map((s) => [s.category, s.category])).values()
-    );
-    const sortedCategories = [...categories].sort(
-      (a, b) =>
-        CATEGORY_ORDER.indexOf(a as (typeof CATEGORY_ORDER)[number]) -
-        CATEGORY_ORDER.indexOf(b as (typeof CATEGORY_ORDER)[number])
-    );
+    // Use the pre-sorted skillsByCategory from config, filtering to only
+    // include skills that were passed in via props.
+    const skillNames = new Set(skills.map((s) => s.name));
+    const grouped = skillsByCategory
+      .map((group) => ({
+        category: group.category,
+        skills: group.skills.filter((s) => skillNames.has(s.name)),
+      }))
+      .filter((group) => group.skills.length > 0);
 
     return (
       <div className="space-y-6">
-        {sortedCategories.map((category) => {
-          const categorySkills = skills.filter((s) => s.category === category);
-          if (categorySkills.length === 0) return null;
-          return (
-            <section key={category}>
-              <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-                {category}
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {categorySkills.map((skill, idx) => (
-                  <SkillChip
-                    key={`${skill.name}-${idx}`}
-                    skill={skill}
-                    id={`spotlight-card-skills-${slugify(skill.name)}`}
-                    isHighlighted={highlightCardId === slugify(skill.name)}
-                  />
-                ))}
-              </div>
-            </section>
-          );
-        })}
+        {grouped.map(({ category, skills: categorySkills }) => (
+          <section key={category}>
+            <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+              {category}
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {categorySkills.map((skill, idx) => (
+                <SkillChip
+                  key={`${skill.name}-${idx}`}
+                  skill={skill}
+                  id={`spotlight-card-skills-${slugify(skill.name)}`}
+                  isHighlighted={highlightCardId === slugify(skill.name)}
+                />
+              ))}
+            </div>
+          </section>
+        ))}
       </div>
     );
   }

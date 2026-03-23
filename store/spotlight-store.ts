@@ -1,10 +1,8 @@
 import { create } from "zustand";
 
-export type SpotlightTabId =
-  | "experience"
-  | "projects"
-  | "education"
-  | "skills";
+import { type SpotlightTabId } from "@/lib/spotlight-tab-url";
+
+export type { SpotlightTabId };
 
 interface SpotlightStore {
   spotlightTab: SpotlightTabId;

@@ -14,11 +14,8 @@ import {
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ExperienceInterface } from "@/config/experience";
-import {
-  ExperienceDetailContent,
-  getDurationText,
-} from "@/components/experience/experience-detail-content";
-import { cn } from "@/lib/utils";
+import { ExperienceDetailContent } from "@/components/experience/experience-detail-content";
+import { cn, getDurationText } from "@/lib/utils";
 
 interface TimelineProps {
   experiences: ExperienceInterface[];
@@ -95,9 +92,10 @@ const Timeline: React.FC<TimelineProps> = ({ experiences, highlightCardId }) => 
                       href={experience.companyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Visit ${experience.company} website`}
                       className="text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      <Icons.externalLink className="w-4 h-4" />
+                      <Icons.externalLink className="w-4 h-4" aria-hidden="true" />
                     </a>
                   )}
                 </div>

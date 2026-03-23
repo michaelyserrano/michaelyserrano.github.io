@@ -5,15 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatDate(input: string | number): string {
-  const date = new Date(input);
-  return date.toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
 export function formatDateFromObj(input: Date): string {
   const date = new Date(input);
   return date.toLocaleDateString("en-US", {
@@ -22,3 +13,20 @@ export function formatDateFromObj(input: Date): string {
     year: "numeric",
   });
 }
+
+export const getYearFromDate = (date: Date): string => {
+  return new Date(date).getFullYear().toString();
+};
+
+export const getDurationText = (
+  startDate: Date,
+  endDate: Date | "Present"
+): string => {
+  const startYear = getYearFromDate(startDate);
+  const endYear =
+    typeof endDate === "string" ? "Present" : getYearFromDate(endDate);
+  if (endYear === "Present" || startYear !== endYear) {
+    return `${startYear} - ${endYear}`;
+  }
+  return startYear;
+};

@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { AnimatedSection } from "@/components/common/animated-section";
 import { ClientPageWrapper } from "@/components/common/client-page-wrapper";
 import { Icons } from "@/components/common/icons";
+import { getDurationText, getYearFromDate } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import ChipContainer from "@/components/ui/chip-container";
@@ -23,24 +24,6 @@ export function generateStaticParams() {
   return experiences.map((e) => ({ expId: e.id }));
 }
 
-// Helper function to extract year from date
-const getYearFromDate = (date: Date): string => {
-  return new Date(date).getFullYear().toString();
-};
-
-// Helper function to get duration text
-const getDurationText = (
-  startDate: Date,
-  endDate: Date | "Present"
-): string => {
-  const startYear = getYearFromDate(startDate);
-  const endYear =
-    typeof endDate === "string" ? "Present" : getYearFromDate(endDate);
-  if (endYear === "Present" || startYear !== endYear) {
-    return `${startYear} - ${endYear}`;
-  }
-  return startYear;
-};
 
 export async function generateMetadata({
   params,
@@ -180,9 +163,10 @@ export default async function ExperienceDetailPage({
                             href={experience.companyUrl}
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label={`Visit ${experience.company} website`}
                             className="text-muted-foreground hover:text-foreground transition-colors"
                           >
-                            <Icons.externalLink className="w-4 h-4" />
+                            <Icons.externalLink className="w-4 h-4" aria-hidden="true" />
                           </a>
                         )}
                       </div>

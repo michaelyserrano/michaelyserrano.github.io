@@ -4,7 +4,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
 
-import { Analytics } from "@/components/common/analytics";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "@/components/common/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/config/site";
@@ -55,6 +55,12 @@ export const metadata = {
         alt: siteConfig.name,
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
   },
   icons: {
     icon: siteConfig.iconIco,
@@ -109,7 +115,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           ]}
         >
           {children}
-          {GA_ID ? <Analytics /> : null}
+          {GA_ID ? <VercelAnalytics /> : null}
           <Toaster />
         </ThemeProvider>
       </body>
