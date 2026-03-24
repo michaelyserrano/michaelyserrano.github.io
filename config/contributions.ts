@@ -9,14 +9,14 @@ export const contributionsUnsorted: contributionsInterface[] = [
   {
     repo: "Sloan Business Club",
     contibutionDescription:
-      "Vice President & Business Education Program Director — Analyzed 10-Ks to build DCF models and 5 Forces analyses for companies. Prepared weekly classes in consulting, finance, entrepreneurship, and general business.",
+      "Vice President & Business Education Program Director. Analyzed 10-Ks to build DCF models and 5 Forces analyses. Prepared weekly classes in consulting, finance, entrepreneurship, and general business.",
     repoOwner: "MIT Sloan",
     link: "",
   },
   {
     repo: "Beta Theta Pi Fraternity",
     contibutionDescription:
-      "Vice President of Finance — Managed and allocated the $400,000 fraternity budget towards house utilities and brotherhood initiatives. Streamlined the payment process, improved transparency, and facilitated house improvements through a new flex-spending program.",
+      "Vice President of Finance. Managed the $400,000 fraternity budget across house utilities and brotherhood initiatives. Introduced a flex-spending program that streamlined payments and improved transparency.",
     repoOwner: "Beta Theta Pi",
     link: "",
   },

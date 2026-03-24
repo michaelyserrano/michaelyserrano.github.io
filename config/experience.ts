@@ -23,12 +23,12 @@ export const experiences: ExperienceInterface[] = [
     startDate: new Date("2025-05-01"),
     endDate: new Date("2025-08-01"),
     description: [
-      "Worked within the Account Safety team to overcome critical training data bottlenecks and fragmented evaluation metrics. Spearheaded the transition from simple regression models trained on manual labels to deeper architectures utilizing programmatically generated datasets."
+      "Account Safety team. The team was bottlenecked by small, manually labeled datasets that forced simple regression models (anything deeper would overfit), and fragmented notebooks made metrics unreliable."
     ],
     achievements: [
-      "Introduced and operationalized a Weak Supervision approach using Snorkel to programmatically generate massive datasets, effectively bypassing the manual labeling bottleneck.",
-      "Architected a centralized MLOps ingestion workflow as a single source of truth, restoring trust in metrics and compressing the model release cycle from months to just one hour.",
-      "Unlocked the ability to hot-swap models in production and deploy deeper architectures, improving alt-account detection recall from 94% to 96%."
+      "Introduced Weak Supervision (Snorkel) to programmatically generate training data at scale, removing the manual labeling bottleneck entirely.",
+      "Built a centralized MLOps ingestion workflow as a single source of truth. Restored trust in metrics and compressed the model release cycle from months to one hour.",
+      "With larger datasets available, deployed deeper architectures and enabled hot-swapping models in production. Alt-account detection recall improved from 94% to 96%."
     ],
     skills: ["Python", "PyTorch", "TensorFlow", "AWS"],
     companyUrl: "https://www.roblox.com",
@@ -42,13 +42,13 @@ export const experiences: ExperienceInterface[] = [
     startDate: new Date("2025-01-01"),
     endDate: "Present",
     description: [
-      "Leading the continuous evolution of 'Savaal', an open-source AI quiz generation toolkit published by MIT researchers. Transitioning it from a deployed document-based assessment tool into an autonomous, voice-interactive educational agent."
+      "Working on Savaal, an open-source AI quiz generation toolkit. Started as the developer who built and shipped the original web app, now leading its transition into an autonomous voice-interactive educational agent."
     ],
     achievements: [
-      "[ MEng ] Transitioning the platform into a dynamic agent capable of deep retrieval and Socratic oral exams using MCP and vNMF architectures.",
-      "[ MEng ] Engineering a LangGraph state machine to orchestrate the agent's executive functions, including planning, memory, and decision-making.",
-      "[ Undergrad ] Built and deployed a production monorepo (Next.js 15 + FastAPI + Celery) with agentic question generation — a PdfQuizAgent performs semantic retrieval, generation, self-critique, and curation in multi-step workflows.",
-      "[ Undergrad ] Engineered core backend systems including pgvector semantic search, group-based access controls, source-text citations, SSE-based live streaming, and Weave observability for LLM tracing."
+      "[ MEng ] Building an agent that can conduct Socratic oral exams with deep retrieval, using MCP and vNMF architectures.",
+      "[ MEng ] Designing a LangGraph state machine for the agent's planning, memory, and decision-making.",
+      "[ Undergrad ] Built and deployed the full-stack web app (Next.js 15 + FastAPI + Celery). The PdfQuizAgent does retrieval, generation, self-critique, and curation in a multi-step loop.",
+      "[ Undergrad ] Built pgvector semantic search, group-based access controls, source-text citations, live SSE streaming, and Weave-based LLM tracing."
     ],
     skills: ["Python", "Typescript", "React", "Next.js", "PostgreSQL", "FastAPI", "Redis", "Docker"],
     companyUrl: "https://www.csail.mit.edu",
@@ -62,11 +62,11 @@ export const experiences: ExperienceInterface[] = [
     startDate: new Date("2023-06-01"),
     endDate: new Date("2023-09-01"),
     description: [
-      "Researched and evaluated lightweight cryptographic algorithms to ensure secure medical device authentication and defend internet communications against quantum computing threats."
+      "Researched post-quantum cryptographic algorithms for securing medical device authentication against future quantum computing attacks."
     ],
     achievements: [
-      "Developed a custom TLS 1.3 protocol implementation featuring a post-quantum authentication signature.",
-      "Identified and addressed vulnerabilities in data protection protocols to enhance overall cybersecurity against quantum attacks."
+      "Built a custom TLS 1.3 implementation with a post-quantum authentication signature.",
+      "Found and documented vulnerabilities in existing data protection protocols under quantum threat models."
     ],
     skills: ["Python", "Typescript"],
     companyUrl: "https://www.ipn.mx",
@@ -80,11 +80,11 @@ export const experiences: ExperienceInterface[] = [
     startDate: new Date("2023-01-02"),
     endDate: new Date("2023-05-01"),
     description: [
-      "Conducted research on dynamic pricing strategies, specifically focusing on the application of reinforcement learning models to optimize algorithmic pricing."
+      "Research on using reinforcement learning for dynamic pricing strategies."
     ],
     achievements: [
-      "Designed and extracted comprehensive information on Deep Q-Network (DQN) algorithms for dynamic pricing.",
-      "Implemented and evaluated the accuracy of simulations to systematically gauge the efficacy and profitability of various pricing strategies."
+      "Surveyed and implemented Deep Q-Network (DQN) approaches for algorithmic pricing.",
+      "Built pricing simulations and evaluated how different RL strategies performed on profitability metrics."
     ],
     skills: ["Python", "TensorFlow", "PyTorch"],
     companyUrl: "https://mitsloan.mit.edu",
@@ -98,12 +98,12 @@ export const experiences: ExperienceInterface[] = [
     startDate: new Date("2024-06-01"),
     endDate: new Date("2024-08-01"),
     description: [
-      "Developed machine learning solutions to optimize user matchmaking and event group partitioning, significantly enhancing algorithmic performance and user satisfaction."
+      "Built ML models for matchmaking and event group partitioning at a social events startup."
     ],
     achievements: [
-      "Built and trained a Graph Convolutional Network (GCN) model, alongside repurposing algorithms for synthetic data generation, to partition event attendees into highly compatible groups.",
-      "Refactored the core matching algorithm codebase and documentation, yielding a 54x computational speed-up.",
-      "Achieved a 99.2% group satisfaction rating from users through the deployment of the new ML matching algorithm."
+      "Trained a Graph Convolutional Network (GCN) to partition event attendees into compatible groups, using synthetic data generation to supplement limited real data.",
+      "Refactored the core matching algorithm. 54x speed-up.",
+      "Deployed the new algorithm to production. 99.2% group satisfaction rating from users."
     ],
     skills: ["Python", "PyTorch", "TensorFlow"],
     companyUrl: "https://www.betteroffsocial.com",

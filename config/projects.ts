@@ -34,7 +34,7 @@ export const Projects: ProjectInterface[] = [
     type: "Startup",
     category: ["Full Stack", "Backend", "Product Strategy"],
     shortDescription:
-      "CEO & Co-Founder of an AI-commerce infrastructure platform — wrapping arbitrary e-commerce websites in deterministic, agent-callable APIs via the Model Context Protocol so any AI agent can transact on them without custom integration.",
+      "CEO & Co-Founder. Rindler turns any e-commerce website into a structured API that AI agents can use to browse, search, and buy, without the site needing to change anything. Built on the Model Context Protocol.",
     websiteLink: "#",
     techStack: ["Go", "Typescript", "React", "Next.js", "PostgreSQL", "Redis", "Python", "Docker", "Playwright", "Three.js"],
     startDate: new Date("2025-11-01"),
@@ -43,15 +43,15 @@ export const Projects: ProjectInterface[] = [
     pagesInfoArr: [],
     descriptionDetails: {
       paragraphs: [
-        "Rindler is the translation layer between AI and commerce. It wraps arbitrary e-commerce websites in deterministic, agent-callable APIs so any LLM agent can transact on them without requiring direct browser automation or custom per-site integration. The key insight is treating agent navigation as a distributed systems problem — not an AI problem. The platform is agent-agnostic by design — the MCP server is self-documenting enough that any model can use it correctly without custom prompt engineering.",
+        "Rindler turns any e-commerce website into a clean API that AI agents can transact through, no custom integration or per-site wrappers needed. We treat agent navigation as a distributed systems problem, not an AI problem: most agent failures come from brittle browser state, not bad reasoning. The MCP server is agent-agnostic. Any model can pick up our tools and use them correctly without special prompting.",
       ],
       bullets: [
-        "[ Leadership ] Drive product vision, business strategy, fundraising, and go-to-market as CEO & Co-Founder.",
-        "[ Backend ] Built a Go MCP server with OAuth 2.0 PKCE authentication, SSRF-safe proxy, and dual PostgreSQL databases for management and runtime data.",
-        "[ Infrastructure ] Engineered a Playwright-based worker fleet with Redis task queues (asynq) for resilient, self-healing browser automation in ephemeral containers.",
-        "[ Ingest Engine ] Designed the site-mapping pipeline: an interactive overlay captures user interactions and synthesizes them into Atomic Node schemas with guardrail, execution, sync, and rollback phases.",
-        "[ Frontend ] Built the public site with React 19, Vite, Three.js, and Framer Motion, and an internal dashboard with Next.js 16 for backend testing and telemetry.",
-        "[ Agent Testing ] Created a Python clean-room benchmarking arena with unified telemetry to compare browser automation agent frameworks. Shipt simulation validated the architecture: 4x faster (407s → 98s) and 6x cheaper ($1.54 → $0.26) than raw open-source agents.",
+        "[ Leadership ] Product vision, business strategy, fundraising, and go-to-market.",
+        "[ Backend ] Go MCP server with OAuth 2.0 PKCE, an SSRF-safe proxy, and dual PostgreSQL databases (management + runtime).",
+        "[ Infrastructure ] Playwright worker fleet with Redis/asynq task queues. Each browser session runs in an ephemeral container with self-healing fallbacks.",
+        "[ Ingest Engine ] Site-mapping pipeline that captures user interactions via an interactive overlay and converts them into Atomic Node schemas (guardrail → execution → sync → rollback).",
+        "[ Frontend ] Public site (React 19, Vite, Three.js, Framer Motion) and internal dashboard (Next.js 16) for backend testing and telemetry.",
+        "[ Agent Testing ] Python benchmarking arena for comparing browser automation agents. Shipt simulation: 4x faster (407s → 98s), 6x cheaper ($1.54 → $0.26) vs. raw open-source agents.",
       ],
     },
   },
@@ -61,7 +61,7 @@ export const Projects: ProjectInterface[] = [
     type: "Personal",
     category: ["Full Stack", "Backend", "Web Dev"],
     shortDescription:
-      "Lead Developer & Architect of a privacy-first medical AI platform for reasoning over fragmented health records. Built as a secure, offline-first desktop app with SMART on FHIR, multi-model LLM support (cloud and local), and vision-based document analysis.",
+      "Lead Developer & Architect. A desktop app that pulls your health records from Epic, Cerner, and other providers into one place, then lets you chat with local or cloud AI models about your own medical history. Works fully offline.",
     techStack: ["Rust", "Typescript", "React", "Tailwind CSS", "Tauri", "Firebase"],
     startDate: new Date("2024-01-01"),
     endDate: new Date("2025-12-01"),
@@ -70,7 +70,7 @@ export const Projects: ProjectInterface[] = [
       {
         title: "FHIR Integration & Consent",
         description:
-          "Patients securely authenticate with Epic, Cerner, and other healthcare providers via industry-standard SMART on FHIR. OAuth2/PKCE ensures credentials never touch the app — users exercise granular consent over exactly which records are imported into their local vault.",
+          "Patients log in to their healthcare providers (Epic, Cerner, etc.) through SMART on FHIR. Credentials never touch the app since OAuth2/PKCE handles everything. Users choose exactly which records to import.",
         imgArr: [
           "/projects/charak/charak_demo_1.png",
           "/projects/charak/charak_demo_2.png",
@@ -79,7 +79,7 @@ export const Projects: ProjectInterface[] = [
       {
         title: "Patient Dashboard",
         description:
-          "A unified, time-series view of the patient's comprehensive medical history, cleanly normalized from multiple provider networks (Epic, Cerner) into one intuitive interface with FHIR R4 data standardization.",
+          "All your medical history from different providers, normalized into a single timeline. Conditions, medications, labs, and procedures across networks show up in one view.",
         imgArr: [
           "/projects/charak/charak_demo_3.png",
         ],
@@ -87,7 +87,7 @@ export const Projects: ProjectInterface[] = [
       {
         title: "Conversational Local AI",
         description:
-          "A chat interface supporting side-by-side model comparison across cloud (Gemini, GPT-4o) and local runtimes (Ollama, LM Studio, llama.cpp, LocalAI). Patients query their encrypted medical context with full provenance — every AI answer cites the exact medical records used.",
+          "Chat with AI about your health records using cloud models (Gemini, GPT-4o) or fully local ones (Ollama, LM Studio, llama.cpp). Compare models side-by-side. Every answer cites the specific records it drew from.",
         imgArr: [
           "/projects/charak/charak_demo_4.png",
         ],
@@ -95,13 +95,13 @@ export const Projects: ProjectInterface[] = [
     ],
     descriptionDetails: {
       paragraphs: [
-        "Charak is a privacy-first, offline-capable desktop application for coherent medical reasoning over fragmented health records. Named after the ancient Indian physician Charaka, it empowers patients with complex conditions to aggregate data from multiple providers, track competing hypotheses, and prepare for clinical encounters — all without compromising data privacy. Patient data lives locally by default; cloud services are strictly opt-in.",
+        "Charak is a desktop app that helps patients make sense of their scattered health records. Named after the ancient Indian physician Charaka, it aggregates data from multiple healthcare providers, lets you ask AI questions about your own medical history, and keeps everything on your device by default. Cloud is opt-in, never required.",
       ],
       bullets: [
-        "[ Frontend ] Built a secure, cross-platform desktop client using Tauri 2 and React 19 with full offline functionality.",
-        "[ Backend ] Engineered a Rust-based SMART on FHIR client handling OAuth2/PKCE flows, CORS-bypassing FHIR requests, and secure token storage for Epic and Cerner EHR systems.",
-        "[ Data Pipeline ] Created local OCR and document extraction workflows using Tesseract.js and PDF.js with vision model support (LLaVA) for analyzing scanned medical documents entirely offline.",
-        "[ AI Integration ] Unified four local model runtimes (Ollama, LM Studio, llama.cpp, LocalAI) with consent-gated cloud APIs (Gemini, GPT-4o), enabling side-by-side model comparison and fully offline operation.",
+        "[ Frontend ] Cross-platform desktop client with Tauri 2 and React 19. Works fully offline.",
+        "[ Backend ] Rust-based SMART on FHIR client that handles OAuth2/PKCE, bypasses CORS for FHIR requests, and stores tokens securely. Tested against Epic and Cerner sandboxes.",
+        "[ Data Pipeline ] Local OCR (Tesseract.js) and PDF extraction (PDF.js) for scanned documents. Vision models like LLaVA can analyze medical images without leaving the device.",
+        "[ AI Integration ] Supports four local runtimes (Ollama, LM Studio, llama.cpp, LocalAI) and cloud APIs (Gemini, GPT-4o). Models can be compared side-by-side on the same query.",
       ],
     },
   },
@@ -111,7 +111,7 @@ export const Projects: ProjectInterface[] = [
     type: "Personal",
     category: ["Full Stack", "Backend", "Web Dev"],
     shortDescription:
-      "An MIT CSAIL research tool — a human-in-the-loop educational assessment generator that surfaces the AI's extracted knowledge structure for instructor review before question generation. Extracts concept dependency graphs from course materials and generates Bloom's Taxonomy–aligned quizzes via RAG.",
+      "An MIT CSAIL research tool. Instructors upload course materials, the system extracts a concept graph, and instructors edit it on a visual canvas before any quiz questions are generated. Questions are Bloom's Taxonomy-aligned and grounded in the source text.",
     techStack: ["Python", "FastAPI", "Typescript", "React", "Next.js", "PostgreSQL", "Redis", "Docker", "Celery"],
     startDate: new Date("2025-01-01"),
     endDate: new Date("2025-05-01"),
@@ -120,31 +120,31 @@ export const Projects: ProjectInterface[] = [
       {
         title: "ConceptQ Platform",
         description:
-          "The landing experience introduces educators to the Human-in-the-Loop workflow, emphasizing human augmentation over autonomous AI generation.",
+          "The landing page explains the workflow: upload materials, review the extracted concept graph, then generate questions. The instructor stays in control at every step.",
         imgArr: ["/projects/concept-q/conceptq_demo_1.png"],
       },
       {
         title: "Lecture Dashboard & Generation",
         description:
-          "The central workspace where instructors upload PDFs, scanned images (with OCR), or plain text. The system extracts concepts via a map-reduce LLM pipeline, and instructors configure Bloom's Taxonomy parameters before generation.",
+          "Instructors upload PDFs, scanned images (with OCR), or plain text. The system extracts concepts through a map-reduce LLM pipeline, and instructors pick Bloom's Taxonomy levels before generating questions.",
         imgArr: ["/projects/concept-q/conceptq_demo_2.png"],
       },
       {
         title: "The Calibration Interface",
         description:
-          "An interactive React Flow canvas with Dagre auto-layout where educators act as the 'human-in-the-loop'. Instructors visually prune irrelevant concepts, rename nodes, and correct prerequisite edges — ensuring the AI's knowledge structure matches pedagogical intent before a single question is generated.",
+          "An interactive React Flow canvas with Dagre auto-layout. Instructors prune irrelevant concepts, rename nodes, and fix prerequisite edges so the graph actually matches what they teach before any questions are generated.",
         imgArr: ["/projects/concept-q/conceptq_demo_3.png"],
       },
     ],
     descriptionDetails: {
       paragraphs: [
-        "ConceptQ is a Human-in-the-Loop (HITL) educational workbench built to solve the alignment gap between LLM statistical probabilities and actual pedagogical intent. The core innovation is surfacing the AI's extracted knowledge structure for human review before question generation — instructors prune, rename, and restructure the concept graph on an interactive canvas, then questions are generated via RAG against source passages and streamed live to the browser.",
+        "ConceptQ lets instructors review and edit the AI's understanding of their course material before any quiz questions are generated. The system extracts a concept graph from uploaded documents, instructors fix it on a visual canvas, and then questions are generated via RAG against the actual source text. Questions stream live to the browser as they're created.",
       ],
       bullets: [
-        "[ Backend ] Built a two-service architecture with FastAPI and Celery workers orchestrated by Docker Compose, using dual PostgreSQL databases (frontend via Prisma, backend via SQLAlchemy) and Redis for task queuing and real-time event streaming.",
-        "[ Data Engineering ] Engineered a map-reduce LLM pipeline to extract hierarchical concept graphs from documents, with NetworkX Louvain community detection for clustering and pgvector for semantic passage retrieval.",
-        "[ Frontend ] Implemented a Next.js 14 interface with React Flow and Dagre for visual graph editing, live SSE-based question streaming, and role-based access control (Admin, User, Viewer).",
-        "[ AI Integration ] Designed Bloom's Taxonomy-constrained prompts with RAG grounding to generate questions at multiple cognitive levels, with source-text citations for factual accuracy.",
+        "[ Backend ] Two-service architecture: FastAPI + Celery workers, orchestrated with Docker Compose. Dual PostgreSQL databases (Prisma for frontend, SQLAlchemy for backend) and Redis for task queues and event streaming.",
+        "[ Data Engineering ] Map-reduce LLM pipeline extracts concept graphs from documents. NetworkX handles community detection (Louvain) for clustering, pgvector handles semantic passage retrieval.",
+        "[ Frontend ] Next.js 14 with React Flow and Dagre for the graph editor. Questions stream live via SSE. Role-based access control (Admin, User, Viewer).",
+        "[ AI Integration ] Bloom's Taxonomy-constrained prompts with RAG grounding. Questions cite their source passages for traceability.",
       ],
     },
   },
