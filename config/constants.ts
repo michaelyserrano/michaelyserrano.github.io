@@ -63,7 +63,13 @@ export type ValidSkills =
   | "Rust"
   | "Tauri"
   | "Playwright"
-  | "Celery";
+  | "Celery"
+  | "Sentry"
+  | "GitHub Actions"
+  | "Cloudflare"
+  | "Railway"
+  | "Clerk"
+  | "Vite";
 
 export type ValidCategory =
   | "Full Stack"
