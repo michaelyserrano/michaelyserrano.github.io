@@ -69,7 +69,10 @@ export type ValidSkills =
   | "Cloudflare"
   | "Railway"
   | "Clerk"
-  | "Vite";
+  | "Vite"
+  | "Nginx"
+  | "MinIO"
+  | "pgvector";
 
 export type ValidCategory =
   | "Full Stack"
