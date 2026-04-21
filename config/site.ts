@@ -10,7 +10,7 @@ export const siteConfig = {
     linkedin: "https://linkedin.com/in/michael-y-serrano",
   },
   resumePdfUrl:
-    "https://drive.google.com/file/d/1YW4H2cLcjUHJ6rLCa4HOr_pls7H2qJ_i/view?usp=sharing",
+    "https://github.com/michaelyserrano/michaelyserrano.github.io/raw/main/resume/resume.pdf",
   contactEmail: "michaelyserrano@gmail.com",
   ogImage: "/logo.png",
   /** Cache-bust (?v=2) so browsers fetch the updated favicon instead of serving the old one. */

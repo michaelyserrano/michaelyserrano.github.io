@@ -13,6 +13,7 @@
 \pagestyle{empty}
 \raggedbottom
 \raggedright
+\setlength{\parindent}{0pt}
 \setlength{\tabcolsep}{0pt}
 \setlength{\footskip}{4.1pt}
 \setlength{\parskip}{0pt}
@@ -22,15 +23,22 @@
   {\vspace{0pt}\Large\bfseries}
   {}{0em}{}
   [\vspace{1pt}\titlerule\vspace{-3pt}]
+% To condense the resume later, reduce section spacing here
+% e.g. change {8pt}{3pt} back toward {6pt}{2pt}.
+\titlespacing*{\section}{0pt}{8pt}{3pt}
 
 % Single-line entry: Role | Org (Location)  ......  Date
 \newcommand{\entry}[4]{%
-  \vspace{5pt}%
+  % To condense later, lower this from 5pt to 4pt.
+  \vspace{6pt}%
   \noindent\textbf{#1}\enspace$|$\enspace#2\enspace\textit{(#3)}\hfill#4%
   \vspace{1pt}%
 }
 
-\newcommand{\bulletlist}{\begin{itemize}[leftmargin=1.2em, itemsep=-1pt, topsep=1pt, parsep=0pt, partopsep=0pt]}
+% To condense later:
+% - lower rightmargin slightly if you want wider bullets,
+% - reduce itemsep from 0.5pt back to -1pt for tighter lists.
+\newcommand{\bulletlist}{\begin{itemize}[leftmargin=1.2em, rightmargin=3.7em, labelsep=0.45em, itemsep=0.5pt, topsep=0pt, parsep=0pt, partopsep=0pt]}
 \newcommand{\bulletlistend}{\end{itemize}}
 
 %-------------------
@@ -38,8 +46,8 @@
 
 %----------HEADER----------
 \begin{center}
-  {\LARGE\bfseries Michael Serrano}\\[3pt]
-  \small
+  {\fontsize{17}{18}\selectfont\bfseries Michael Serrano}\\[2pt]
+  \footnotesize
   michaelyserrano@gmail.com\enspace$|$\enspace
   (314) 471-8723\enspace$|$\enspace
   Cambridge, MA\enspace$|$\enspace
@@ -47,12 +55,13 @@
   \href{https://github.com/michaelyserrano}{github.com/michaelyserrano}
 \end{center}
 
-\vspace{-6pt}
+% To condense later, make this more negative again (e.g. -9pt).
+\vspace{-8pt}
 
 %-----------EDUCATION-----------
 \section{Education}
 
-\vspace{4pt}
+\vspace{5pt}
 \noindent\textbf{Massachusetts Institute of Technology}, Cambridge, MA\hfill GPA: 4.6/5.0\\
 Master of Engineering\enspace$|$\enspace\textbf{Computer Science, Economics, and Data Science}\hfill January 2027\\
 Bachelor of Science\enspace$|$\enspace\textbf{Physics, Computer Science, Economics, and Data Science}\hfill June 2026
@@ -60,67 +69,72 @@ Bachelor of Science\enspace$|$\enspace\textbf{Physics, Computer Science, Economi
 %-----------SKILLS-----------
 \section{Technical Skills}
 
-\vspace{4pt}
+\vspace{5pt}
 \noindent\textbf{Languages:} Python, Go, TypeScript, Rust, R, SQL, C\\
-\textbf{System Design:} Dual-database architecture, async job queues, multi-stage data pipelines, self-healing execution loops, sliding-window rate limiting, graceful shutdown\\
-\textbf{Tools \& Infra:} PostgreSQL, Redis, Docker, GitHub Actions, Railway, Cloudflare, Sentry, Playwright, AWS, Celery, Airflow\\
-\textbf{Protocols \& Auth:} REST APIs, MCP, OAuth 2.0 PKCE, JWT, AES-256-GCM encryption\\
-\textbf{ML/AI:} PyTorch, TensorFlow, scikit-learn, LangChain, Claude API, Snorkel, NumPy, Pandas, PySpark
+\textbf{System Design:} Dual-database design, async queues, data pipelines, self-healing workers, rate limiting,\linebreak[3] reverse proxies, horizontal scaling, vector search, SSE\\
+\textbf{Tools \& Infra:} Postgres, Redis, Docker, GitHub Actions, Railway, Cloudflare,\linebreak[3] Sentry, Playwright, AWS, Celery, Airflow, Nginx, MinIO\\
+\textbf{Protocols \& Auth:} REST APIs, MCP, OAuth 2.0 PKCE, JWT, AES-256-GCM encryption, OIDC, RBAC\\
+\textbf{ML/AI:} PyTorch, TensorFlow, scikit-learn, LangChain, Claude API, Snorkel, pgvector, NumPy, Pandas, PySpark
 
 %-----------EXPERIENCE-----------
 \section{Work and Research Experience}
 
 \entry{Co-Founder, Software Engineer}{Rindler (YC S26)}{San Francisco, CA}{November 2025 --- Present}
 \bulletlist
-  \item Built an agent-agnostic MCP server in Go with OAuth 2.0 PKCE, JWT auth, and AES-256-GCM encryption at rest --- any AI model can search, navigate, and transact on retail sites without per-site integration
-  \item Deployed a Playwright worker fleet with Redis/asynq priority queues, ephemeral browser containers, and a self-healing execution loop with automatic fallback promotion
-  \item Architected dual-database separation (control plane vs.\ data plane) with structured logging (slog), Sentry error tracking, and sliding-window rate limiting
-  \item Built GitHub Actions CI/CD gating PRs before Railway auto-deploy, with Cloudflare Pages/Workers at the edge
-  \item Achieved \textbf{4x faster} (407s$\to$98s) and \textbf{6x cheaper} (\$1.54$\to$\$0.26) task completion vs.\ open-source agents in benchmark arena
-\bulletlistend
-
-\entry{Machine Learning Intern}{Roblox}{San Mateo, CA}{May --- August 2025}
-\bulletlist
-  \item Developed LSH-minhash + logistic regression pipeline detecting alt accounts across \textbf{150B user-pairs}
-  \item Introduced Snorkel-based weak supervision for training data, cutting model release cycle from \textbf{months to 1 hour}
-  \item Improved alt-account detection recall from \textbf{94\% to 96\%} at 90\% precision via refined candidate generation
-  \item Rebuilt and documented defunct training pipeline, enabling rapid PR curve-evaluated retraining
+  \item Built Rindler, a translation layer between AI agents and the live web, turning human websites into robust MCP tools for navigation, transactions, and multi-step tasks
+  \item Built a browser execution platform with priority queues, ephemeral workers, and self-healing retries
+  \item Split control and data planes, added observability and rate limits, and hardened the platform for production use
+  \item Rindler achieved \textbf{4x faster} task completion (407s$\to$98s) and \textbf{6x cheaper} cost (\$1.54$\to$\$0.26) than OSS agents
 \bulletlistend
 
 \entry{LLM Researcher}{MIT CSAIL}{Cambridge, MA}{January 2025 --- Present}
 \bulletlist
-  \item Built and deployed ConceptQ to MIT course staff with map-reduce concept graph extraction, interactive canvas editing, and agentic Bloom's Taxonomy-aligned question generation via RAG
-  \item Designed async infrastructure (Celery + Redis Streams) with live SSE streaming of generated questions
-  \item Integrated NextAuth v5 with CSAIL OIDC and MIT Touchstone for production auth with three-tier RBAC
-  \item Engineered automated prompt optimization loop evaluated on a 6-dimensional rubric for iterative prompt tuning
+  \item Built and deployed ConceptQ for MIT course staff, turning materials into editable concept graphs and Bloom-aligned quiz questions with RAG grounding
+  \item Productionized a multi-service research platform and release pipeline so course staff could ship changes reliably
+  \item Built real-time quiz generation and secure instructor workflows for classroom use
+  \item Designed the storage and monitoring layer with deduplication to support retrieval, debugging, and scale
+\bulletlistend
+
+\entry{Machine Learning Intern}{Roblox}{San Mateo, CA}{May --- August 2025}
+\bulletlist
+  \item Developed an LSH-minhash + logistic regression pipeline for alt-account detection across \textbf{150B user-pairs}
+  \item Introduced Snorkel-based weak supervision, cutting the model release cycle from \textbf{months to 1 hour}
+  \item Improved alt-account recall from \textbf{94\% to 96\%} at 90\% precision via refined candidate generation
+  \item Rebuilt and documented a defunct training pipeline, restoring rapid retraining and PR-curve evaluation
 \bulletlistend
 
 \entry{Machine Learning Intern}{Better Off Social}{New York, NY}{June --- August 2024}
 \bulletlist
   \item Trained a GCN to partition event attendees into compatible groups; \textbf{99.2\%} satisfaction rating in production
-  \item Developed a PyTorch feedforward network to predict pairwise compatibility from demographic and personality features
+  \item Built a compatibility model from demographic and personality features for downstream matching
   \item Refactored matching algorithm codebase and documentation, yielding a \textbf{54x speed-up}
 \bulletlistend
 
 \entry{Algorithmic Game Theory Researcher}{MIT Sloan}{Cambridge, MA}{January --- May 2023}
 \bulletlist
-  \item Profiled Deep Q-Network dynamic pricing agents and characterized emergent collusive pricing behavior
-  \item Analyzed how varying levels of prior market knowledge shift Nash equilibrium outcomes between competing agents
+  \item Studied reinforcement-learning pricing agents and how prior market knowledge drives emergent collusion
+  \item Analyzed how prior market knowledge shifts Nash equilibrium outcomes between firms
 \bulletlistend
 
 %-----------LEADERSHIP-----------
 \section{Leadership and Extracurriculars}
 
+\entry{Teaching Assistant}{Modeling with ML \& Intro to ML Courses}{Cambridge, MA}{February 2024 --- May 2025}
+\bulletlist
+  \item Taught fundamentals of modeling, supervised learning, and unsupervised learning
+  \item Helped adapt curriculum and assessments to better test understanding despite widespread GenAI use
+\bulletlistend
+
 \entry{Vice President and Treasurer}{Sloan Business Club}{Cambridge, MA}{January 2024 --- December 2025}
 \bulletlist
   \item Managed club expenditures and a \$20,000 budget for events, marketing, and recruitment
-  \item Led outreach for external speakers and logistics for meetings and conferences
+  \item Led external speaker outreach and event logistics
 \bulletlistend
 
 \entry{VP of Finance, Risk Management Director}{Beta Theta Pi}{Cambridge, MA}{January 2023 --- December 2025}
 \bulletlist
-  \item Managed a \textbf{\$400,000} budget for house upkeep, brotherhood initiatives, and asset management
-  \item Designed and launched a flex-spending allocation system for house improvements, increasing member retention
+  \item Managed a \textbf{\$400,000} budget for house upkeep, programming, and asset management
+  \item Launched a flex-spending system for house improvements, increasing member retention
 \bulletlistend
 
 \end{document}
